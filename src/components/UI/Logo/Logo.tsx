@@ -10,7 +10,7 @@ const Logo = () => {
       </div>
       <div className={styles.logoText}>
         <div className={styles.logoTitle}>Melicii</div>
-        <div className={styles.logoSubtitle}>Recipes</div>
+        <div className={styles.logoSubtitle}>RECIPES</div>
       </div>
     </div>
   );

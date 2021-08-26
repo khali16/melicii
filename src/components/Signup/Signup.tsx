@@ -4,13 +4,12 @@ import TextField from "@material-ui/core/TextField";
 import { useStyles, theme } from "../UI/Logo/Styles";
 import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
-import styles from "./LogInModal.module.css";
+import styles from "./Signup.module.css";
 import Logo from "../UI/Logo/Logo";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-const LogIn = () => {
+const Signup = () => {
   const classes = useStyles();
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -34,11 +33,30 @@ const LogIn = () => {
               margin="normal"
               required
               fullWidth
+              id="username"
+              label="USERNAME"
+              name="username"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
               name="password"
               label="PASSWORD"
               type="password"
               id="password"
-              autoComplete="current-password"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="confirmPassword"
+              label="CONFIRM PASSWORD"
+              type="password"
+              id="confirmPassword"
             />
           </ThemeProvider>
           <Button
@@ -61,7 +79,7 @@ const LogIn = () => {
                 fontWeight: "bold",
               }}
             >
-              {"Don't have an account? Sign Up"}
+              {"Already registered? Log In now."}
             </Link>
           </div>
         </form>
@@ -70,4 +88,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default Signup;

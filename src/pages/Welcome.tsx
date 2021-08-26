@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
-import LogIn from "../components/LogIn/LogIn";
-import Modal from "@material-ui/core/Modal";
 import LogInModal from "../components/LogIn/LogInModal";
+import SignupModal from "../components/Signup/SignupModal";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -28,14 +24,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Welcome = () => {
-  const [openModal, setOpenModal] = useState(false);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const [openSignupModal, setOpenSignupModal] = useState(false);
   const classes = useStyles();
 
-  const openModalHandler = () => {
-    setOpenModal(true);
+  const openLoginModalHandler = () => {
+    setOpenLoginModal(true);
   };
-  const closeModalHandler = () => {
-    setOpenModal(false);
+  const closeLoginModalHandler = () => {
+    setOpenLoginModal(false);
+  };
+  const openSignupModalHandler = () => {
+    setOpenSignupModal(true);
+  };
+  const closeSignupModalHandler = () => {
+    setOpenSignupModal(false);
   };
 
   return (
@@ -58,15 +61,26 @@ const Welcome = () => {
           variant="outlined"
           size="small"
           style={{ marginRight: "10px" }}
-          onClick={openModalHandler}
+          onClick={openLoginModalHandler}
         >
           Log in
         </Button>
-        <Button variant="outlined" size="small">
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={openSignupModalHandler}
+        >
           Sign up
         </Button>
       </Toolbar>
-      <LogInModal openModal={openModal} closeModal={closeModalHandler} />
+      <LogInModal
+        openModal={openLoginModal}
+        closeModal={closeLoginModalHandler}
+      />
+      <SignupModal
+        openModal={openSignupModal}
+        closeModal={closeSignupModalHandler}
+      />
     </>
   );
 };
