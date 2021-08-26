@@ -6,9 +6,9 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import LogIn from "../components/LogIn";
+import LogIn from "../components/LogIn/LogIn";
 import Modal from "@material-ui/core/Modal";
-import LogInModal from "../components/LogInModal";
+import LogInModal from "../components/LogIn/LogInModal";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {

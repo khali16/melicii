@@ -1,0 +1,34 @@
+.logoBox {
+  display: grid;
+  row-gap: 0;
+  margin-top: 30px;
+}
+
+.logoIcon {
+  grid-column: 1/2;
+  grid-row: 1 / span 2;
+}
+
+.logoText {
+  display: block;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.logoTitle {
+  font-family: "Frank Ruhl Libre", Georgia, serif;
+  color: #117777;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 0.2;
+}
+
+.logoSubtitle {
+  font-family: "Frank Ruhl Libre";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 40px;
+  color: #38a870;
+}
