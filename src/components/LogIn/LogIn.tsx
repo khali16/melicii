@@ -7,16 +7,44 @@ import Container from "@material-ui/core/Container";
 import styles from "./LogInModal.module.css";
 import Logo from "../UI/Logo/Logo";
 import { ThemeProvider } from "@material-ui/core/styles";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useAuth } from "../store/auth-context";
 
 const LogIn = () => {
+  const { login } = useAuth();
   const classes = useStyles();
+
+  async function handleLogin(email: string, password: string) {
+    try {
+      login(email, password);
+      console.log("logged in");
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  const loginSchema = Yup.object().shape({
+    email: Yup.string().required("Please, enter your email."),
+    password: Yup.string().required("Please, enter your password."),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      handleLogin(values.email, values.password);
+    },
+  });
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Logo />
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={formik.handleSubmit}>
           <ThemeProvider theme={theme}>
             <TextField
               variant="outlined"
@@ -28,6 +56,8 @@ const LogIn = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={formik.handleChange}
+              value={formik.values.email}
             />
             <TextField
               variant="outlined"
@@ -39,6 +69,8 @@ const LogIn = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={formik.handleChange}
+              value={formik.values.password}
             />
           </ThemeProvider>
           <Button
