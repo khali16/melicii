@@ -1,6 +1,6 @@
 .modal {
   width: 700px;
-  height: 65vh;
+  height: auto;
   background-color: white;
   margin: auto;
 }

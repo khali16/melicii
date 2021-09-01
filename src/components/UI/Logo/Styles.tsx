@@ -49,6 +49,12 @@ const theme = createTheme({
         display: "none",
       },
     },
+    MuiFormHelperText: {
+      root: {
+        color: "red",
+        opacity: "0.7",
+      },
+    },
   },
 });
 
