@@ -1,134 +1,85 @@
-import React, { useState } from "react";
-import { Container, Grid } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
-import { useStyles, theme } from "../components/UI/Logo/Styles";
-import { ThemeProvider } from "@material-ui/styles";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import { RadioGroup } from "@material-ui/core";
-import { FormControlLabel } from "@material-ui/core";
-import { FormLabel } from "@material-ui/core";
-import { Radio } from "@material-ui/core";
-import { ListItem, List } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
-import { Box } from "@material-ui/core";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Stepper from "@material-ui/core/Stepper";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import React from "react";
+import FirstStepRecipeForm from "../components/NewRecipe/FirstStepRecipeForm";
+import ImageForm from "../components/NewRecipe/ImageForm";
+import IngredientsForm from "../components/NewRecipe/IngredientsForm";
+import MethodForm from "../components/NewRecipe/MethodForm";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: "100%",
+    },
+    backButton: {
+      marginRight: theme.spacing(1),
+    },
+    instructions: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+    },
+  })
+);
+
+function getSteps() {
+  return [
+    "Choose title and difficulty",
+    "Add ingredients",
+    "Add method steps",
+    "Send a picture!",
+  ];
+}
 
 const NewRecipe = () => {
-  const [ingredientsAmount, setIngredientsAmount] = useState([0]);
-  const [stepsAmount, setStepsAmount] = useState([0]);
   const classes = useStyles();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const steps = getSteps();
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
+  function getStepContent(stepIndex: number) {
+    switch (stepIndex) {
+      case 0:
+        return <FirstStepRecipeForm nextStep={handleNext} />;
+      case 1:
+        return <IngredientsForm nextStep={handleNext} />;
+      case 2:
+        return <MethodForm nextStep={handleNext} />;
+      case 3:
+        return <ImageForm />;
+      default:
+        return "Unknown stepIndex";
+    }
+  }
+
   return (
-    <Card style={{ maxWidth: "575px", margin: "auto", marginTop: "20px" }}>
-      <CardHeader>Add Recipe</CardHeader>
-      <CardContent>
-        <form>
-          <div className={classes.inputs}>
-            <ThemeProvider theme={theme}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="TITLE"
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="prepTime"
-                label="TOTAL PREP TIME"
-                type="number"
-              />
-              <FormLabel>DIFFICULTY</FormLabel>
-              <RadioGroup aria-label="difficulty" row>
-                <FormControlLabel
-                  value="easy"
-                  control={<Radio />}
-                  label="Easy"
-                />
-                <FormControlLabel
-                  value="medium"
-                  control={<Radio />}
-                  label="Medium"
-                />
-                <FormControlLabel
-                  value="difficult"
-                  control={<Radio />}
-                  label="Difficult"
-                />
-              </RadioGroup>
-              <List>
-                {ingredientsAmount.map((_, index) => (
-                  <ListItem>
-                    <TextField
-                      key={index}
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="ingredient"
-                      label="Ingredient"
-                    />
-                    <RemoveIcon
-                      onClick={() =>
-                        setIngredientsAmount(
-                          ingredientsAmount.filter((_, id) => index !== id)
-                        )
-                      }
-                    />
-                  </ListItem>
-                ))}
-                <Grid container justify="center">
-                  <AddIcon
-                    onClick={() =>
-                      setIngredientsAmount([
-                        ...ingredientsAmount,
-                        ingredientsAmount.length,
-                      ])
-                    }
-                  />
-                </Grid>
-              </List>
-              <List>
-                {stepsAmount.map((_, index) => (
-                  <ListItem>
-                    <TextField
-                      key={index}
-                      variant="outlined"
-                      margin="normal"
-                      required
-                      fullWidth
-                      id="step"
-                      label="Step"
-                    />
-                    <RemoveIcon
-                      onClick={() =>
-                        setStepsAmount(
-                          stepsAmount.filter((_, id) => index !== id)
-                        )
-                      }
-                    />
-                  </ListItem>
-                ))}
-                <Grid container justify="center">
-                  <AddIcon
-                    onClick={() =>
-                      setStepsAmount([...stepsAmount, stepsAmount.length])
-                    }
-                  />
-                </Grid>
-              </List>
-            </ThemeProvider>
-          </div>
-        </form>
-      </CardContent>
-    </Card>
+    <div className={classes.root}>
+      <Stepper activeStep={activeStep} alternativeLabel>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+      <div>
+        <Typography className={classes.instructions}>
+          {getStepContent(activeStep)}
+        </Typography>
+      </div>
+    </div>
   );
 };
-
 export default NewRecipe;
