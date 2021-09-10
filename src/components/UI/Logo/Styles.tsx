@@ -23,6 +23,19 @@ const useStyles = makeStyles((theme) => ({
     opacity: "0.6",
     height: "70px",
   },
+  frame: {
+    marginTop: theme.spacing(8),
+    border: "2px solid",
+    borderImageSlice: 1,
+    borderImageSource: "linear-gradient(to bottom, #117777, #38a870)",
+  },
+  inputs: {
+    marginTop: theme.spacing(1),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
 }));
 
 const theme = createTheme({

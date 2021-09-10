@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { Grid } from "@material-ui/core";
 import LogInModal from "../components/LogIn/LogInModal";
 import SignupModal from "../components/Signup/SignupModal";
+import HeaderLogo from "../components/UI/Logo/HeaderLogo";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid #F5D175`,
+    height: "60px !important",
   },
   toolbarTitle: {
     flex: 1,
@@ -44,34 +46,24 @@ const Welcome = () => {
   return (
     <>
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h3" component="h4" align="right">
-          Melici Recipes
-        </Typography>
-        <Typography
-          component="h2"
-          variant="h5"
-          color="inherit"
-          align="center"
-          noWrap
-          className={classes.toolbarTitle}
-        >
-          Melicii Recipes
-        </Typography>
-        <Button
-          variant="outlined"
-          size="small"
-          style={{ marginRight: "10px" }}
-          onClick={openLoginModalHandler}
-        >
-          Log in
-        </Button>
-        <Button
-          variant="outlined"
-          size="small"
-          onClick={openSignupModalHandler}
-        >
-          Sign up
-        </Button>
+        <HeaderLogo />
+        <Grid container justify="flex-end">
+          <Button
+            variant="outlined"
+            size="small"
+            style={{ marginRight: "10px" }}
+            onClick={openLoginModalHandler}
+          >
+            Log in
+          </Button>
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={openSignupModalHandler}
+          >
+            Sign up
+          </Button>
+        </Grid>
       </Toolbar>
       <LogInModal
         openModal={openLoginModal}

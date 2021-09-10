@@ -10,28 +10,38 @@ import { ThemeProvider } from "@material-ui/styles";
 import { useFormik } from "formik";
 import React from "react";
 import { theme, useStyles } from "../UI/Logo/Styles";
+import * as Yup from "yup";
 
 interface Props {
   nextStep: () => void;
 }
 
 const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
+  const schema = Yup.object().shape({
+    title: Yup.string().required("Please, enter title.").min(5, "Min 5 char."),
+    prepTime: Yup.number()
+      .required("Please, select number.")
+      .min(5, "Min 5 min"),
+    difficulty: Yup.string().required("Please, select difficulty"),
+  });
+
   const formik = useFormik({
     initialValues: {
       title: "",
-      prepTime: "",
+      prepTime: 0,
       difficulty: "",
     },
     onSubmit: (values) => {
       console.log(values);
+      nextStep();
     },
+    validationSchema: schema,
   });
 
   const classes = useStyles();
 
   const handleSubmit = () => {
     formik.handleSubmit();
-    nextStep();
   };
 
   return (
@@ -53,6 +63,7 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
                   autoFocus
                   value={formik.values.title}
                   onChange={formik.handleChange}
+                  helperText={formik.errors.title}
                 />
                 <TextField
                   variant="outlined"
@@ -66,6 +77,7 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
                   name="prepTime"
                   value={formik.values.prepTime}
                   onChange={formik.handleChange}
+                  helperText={formik.errors.prepTime}
                 />
                 <TextField
                   id="difficulty"
@@ -76,6 +88,7 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
                   required
                   value={formik.values.difficulty}
                   onChange={formik.handleChange}
+                  helperText={formik.errors.difficulty}
                 >
                   <MenuItem value="easy">Easy</MenuItem>
                   <MenuItem value="medium">Medium</MenuItem>

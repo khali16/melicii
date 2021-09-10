@@ -9,7 +9,7 @@ import Logo from "../UI/Logo/Logo";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useAuth } from "../store/auth-context";
+import { useAuth } from "../../store/auth-context";
 
 const Signup = () => {
   const classes = useStyles();

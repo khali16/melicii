@@ -6,9 +6,10 @@ import {
   TextField,
 } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-import { FieldArray, FormikProvider, useFormik } from "formik";
+import { FieldArray, Form, FormikProvider, useFormik } from "formik";
 import React from "react";
 import { theme, useStyles } from "../UI/Logo/Styles";
+import * as Yup from "yup";
 
 interface Props {
   nextStep: () => void;
@@ -17,31 +18,52 @@ interface Props {
 const MethodForm: React.FC<Props> = ({ nextStep }) => {
   const classes = useStyles();
 
+  const schema = Yup.object().shape({
+    steps: Yup.array()
+      .of(
+        Yup.object().shape({
+          step: Yup.string().required("Wybierz"),
+        })
+      )
+      .required("Add step")
+      .min(2, "At least 2 steps"),
+  });
+
+  const handleSubmit = () => {
+    formik.handleSubmit();
+  };
+
   const formik = useFormik({
     initialValues: {
       steps: [{ step: "" }],
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => {
+      console.log(values);
+      nextStep();
+    },
+    validationSchema: schema,
   });
 
   return (
     <>
       <FormikProvider value={formik}>
-        <Card style={{ maxWidth: "700px", margin: "auto", marginTop: "20px" }}>
-          <CardHeader>Add Recipe</CardHeader>
-          <CardContent>
-            <ThemeProvider theme={theme}>
-              <div className={classes.inputs}>
-                <form>
+        <Form>
+          <Card
+            style={{ maxWidth: "700px", margin: "auto", marginTop: "20px" }}
+          >
+            <CardHeader>Add Recipe</CardHeader>
+            <CardContent>
+              <ThemeProvider theme={theme}>
+                <div className={classes.inputs}>
                   <FieldArray
                     name="steps"
                     render={(arrayHelpers) => (
                       <div>
-                        {formik.values.steps.map((_, index) => (
+                        {formik.values.steps.map((step, index) => (
                           <div key={index}>
                             <TextField
                               id={`steps[${index}].step`}
-                              value={formik.values.steps[index].step}
+                              value={step.step}
                               onChange={formik.handleChange}
                               label="STEP"
                               required
@@ -83,24 +105,15 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
-                    type="submit"
-                  >
-                    Check form
-                  </Button>
-                  <Button
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
-                    onClick={nextStep}
+                    onClick={handleSubmit}
                   >
                     Next Step
                   </Button>
-                </form>
-              </div>
-            </ThemeProvider>
-          </CardContent>
-        </Card>
+                </div>
+              </ThemeProvider>
+            </CardContent>
+          </Card>
+        </Form>
       </FormikProvider>
     </>
   );
