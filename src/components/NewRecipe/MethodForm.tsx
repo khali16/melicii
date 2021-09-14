@@ -1,15 +1,10 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  TextField,
-} from "@material-ui/core";
+import { Button, Card, CardContent, TextField } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import { FieldArray, Form, FormikProvider, useFormik } from "formik";
 import React from "react";
 import { theme, useStyles } from "../UI/Logo/Styles";
 import * as Yup from "yup";
+import CardHeader from "@material-ui/core/CardHeader";
 
 interface Props {
   nextStep: () => void;
@@ -35,7 +30,7 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
 
   const formik = useFormik({
     initialValues: {
-      steps: [{ step: "" }],
+      steps: [{ step: "" }, { step: "" }],
     },
     onSubmit: (values) => {
       console.log(values);
@@ -46,15 +41,13 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
 
   return (
     <>
-      <FormikProvider value={formik}>
-        <Form>
-          <Card
-            style={{ maxWidth: "700px", margin: "auto", marginTop: "20px" }}
-          >
-            <CardHeader>Add Recipe</CardHeader>
-            <CardContent>
-              <ThemeProvider theme={theme}>
-                <div className={classes.inputs}>
+      <Card style={{ maxWidth: "700px", margin: "auto", marginTop: "20px" }}>
+        <CardHeader style={{ color: "red" }}>Add Recipe</CardHeader>
+        <CardContent>
+          <ThemeProvider theme={theme}>
+            <FormikProvider value={formik}>
+              <Form>
+                <div>
                   <FieldArray
                     name="steps"
                     render={(arrayHelpers) => (
@@ -72,12 +65,8 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
                               fullWidth
                               multiline
                               minRows={2}
-                              style={{
-                                width: "130%",
-                                marginRight: "100px",
-                              }}
                             />
-                            {formik.values.steps.length > 1 && (
+                            {formik.values.steps.length > 2 && (
                               <button
                                 type="button"
                                 onClick={() => arrayHelpers.remove(index)}
@@ -106,15 +95,16 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
                     color="primary"
                     className={classes.submit}
                     onClick={handleSubmit}
+                    type="submit"
                   >
                     Next Step
                   </Button>
                 </div>
-              </ThemeProvider>
-            </CardContent>
-          </Card>
-        </Form>
-      </FormikProvider>
+              </Form>
+            </FormikProvider>
+          </ThemeProvider>
+        </CardContent>
+      </Card>
     </>
   );
 };

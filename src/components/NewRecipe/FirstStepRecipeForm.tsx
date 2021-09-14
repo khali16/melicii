@@ -101,18 +101,9 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              type="submit"
-            >
-              SUBMIT
-            </Button>
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
               onClick={handleSubmit}
             >
-              ten
+              NEXT
             </Button>
           </CardContent>
         </Card>

@@ -54,7 +54,7 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
           <Card
             style={{ maxWidth: "700px", margin: "auto", marginTop: "20px" }}
           >
-            <CardHeader>Add at least 3 ingredients</CardHeader>
+            <CardHeader>Add at least 3 ingredients </CardHeader>
             <CardContent>
               <ThemeProvider theme={theme}>
                 <div className={classes.inputs}>
@@ -130,16 +130,8 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
                     variant="contained"
                     color="primary"
                     className={classes.submit}
-                    type="submit"
-                  >
-                    NEXT
-                  </Button>
-                  <Button
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
                     onClick={handleSubmit}
+                    type="submit"
                   >
                     ten klinij
                   </Button>
