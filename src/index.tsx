@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { AuthProvider } from "./components/store/auth-context";
+import { AuthProvider } from "./store/auth-context";
 
 ReactDOM.render(
   <AuthProvider>
