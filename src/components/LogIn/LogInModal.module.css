@@ -1,0 +1,14 @@
+.modal {
+  width: 700px;
+  height: auto;
+  background-color: white;
+  margin: auto;
+}
+
+.font {
+  font-family: "Frank Ruhl Libre", Georgia, serif;
+  font-size: x-large;
+  background-color: "#020000";
+  opacity: "0.6";
+  height: "70px";
+}
