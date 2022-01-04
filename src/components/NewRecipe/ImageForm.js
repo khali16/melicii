@@ -1,16 +1,7 @@
-import React, { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Fab,
-  Button,
-  Grid,
-  Box,
-} from "@material-ui/core";
+import { useState } from "react";
+import { CardContent, Fab, Button, Grid, Box } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import { useStyles } from "../UI/Logo/Styles";
-import { useFormik } from "formik";
 import { useHistory } from "react-router";
 
 const ImageForm = () => {
@@ -45,7 +36,7 @@ const ImageForm = () => {
           </label>
         </Grid>
         <Box style={{ margin: "auto", width: "70%", marginTop: "20px" }}>
-          <img src={img} />
+          <img src={img} alt="" />
         </Box>
         {img && (
           <Box style={{ margin: "auto", width: "30%" }}>

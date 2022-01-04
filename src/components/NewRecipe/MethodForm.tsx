@@ -5,6 +5,7 @@ import React from "react";
 import { theme, useStyles } from "../UI/Logo/Styles";
 import * as Yup from "yup";
 import CardHeader from "@material-ui/core/CardHeader";
+import {useForm} from '../../store/form-context'
 
 interface Props {
   nextStep: () => void;
@@ -24,6 +25,8 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
       .min(2, "At least 2 steps"),
   });
 
+  const {setThirdForm} = useForm()
+
   const handleSubmit = () => {
     formik.handleSubmit();
   };
@@ -34,6 +37,7 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
     },
     onSubmit: (values) => {
       console.log(values);
+      setThirdForm(values)
       nextStep();
     },
     validationSchema: schema,

@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormik, FormikProvider, FieldArray, Formik, Form } from "formik";
+import { useFormik, FormikProvider, FieldArray, Form } from "formik";
 import {
   TextField,
   MenuItem,
@@ -11,6 +11,7 @@ import {
 import { useStyles, theme } from "../UI/Logo/Styles";
 import { ThemeProvider } from "@material-ui/styles";
 import * as Yup from "yup";
+import { useForm } from "../../store/form-context";
 
 interface Props {
   nextStep: () => void;
@@ -32,12 +33,15 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
       .min(3, "At least 3 ingredients"),
   });
 
+  const { setSecondForm } = useForm();
+
   const formik = useFormik({
     initialValues: {
       ingredients: [{ amount: 0, measure: "", ingredient: "" }],
     },
     onSubmit: (values) => {
       console.log(values);
+      setSecondForm(values);
       nextStep();
     },
     validationSchema: schema,
@@ -77,18 +81,16 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
                               />
                               <TextField
                                 required
-                                label="Measure"
                                 variant="outlined"
                                 margin="normal"
                                 name={`ingredients[${index}].measure`}
                                 value={ingredient.measure}
                                 onChange={formik.handleChange}
                                 select
+                                style={{ width: "85px" }}
                               >
                                 <MenuItem value="cup">Cup</MenuItem>
-                                <MenuItem value="tablespoon">
-                                  Tablespoon
-                                </MenuItem>
+                                <MenuItem value="tablespoon">Tbsp</MenuItem>
                                 <MenuItem value="kilo">Kilo</MenuItem>
                               </TextField>
                               <TextField

@@ -6,14 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  getDocs,
-  addDoc,
-} from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 const AuthContext = React.createContext();
 
@@ -42,11 +35,7 @@ export function AuthProvider({ children }) {
 
   async function login(email, password) {
     const authentication = getAuth();
-    const response = await signInWithEmailAndPassword(
-      authentication,
-      email,
-      password
-    );
+    await signInWithEmailAndPassword(authentication, email, password);
   }
 
   useEffect(() => {

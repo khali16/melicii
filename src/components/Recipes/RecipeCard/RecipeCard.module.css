@@ -1,0 +1,21 @@
+.cardsContainer {
+  margin-top: 20px;
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  width: 20%;
+  height: 400px;
+}
+
+.link:focus,
+:hover,
+:visited,
+:link,
+:active {
+  text-decoration: inherit;
+  color: inherit;
+}

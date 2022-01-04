@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { theme, useStyles } from "../UI/Logo/Styles";
 import * as Yup from "yup";
+import {useForm} from '../../store/form-context'
 
 interface Props {
   nextStep: () => void;
@@ -25,6 +26,8 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
     difficulty: Yup.string().required("Please, select difficulty"),
   });
 
+  const {setFirstForm, firstForm} = useForm()
+
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -33,6 +36,8 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
     },
     onSubmit: (values) => {
       console.log(values);
+      setFirstForm(values)
+      console.log("first Form: ", firstForm)
       nextStep();
     },
     validationSchema: schema,
