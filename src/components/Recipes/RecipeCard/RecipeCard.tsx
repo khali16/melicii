@@ -33,11 +33,11 @@ const RecipeCard = () => {
               <CardActions>
                 <QueryBuilderIcon />
                 <Typography variant="overline" component="p">
-                  {recipe.totalPrepTime}
+                  {recipe.totalPrepTime} min
                 </Typography>
                 <Rating
                   ratingValue={5}
-                  size={30}
+                  size={25}
                   fillColor="#117777"
                   style={{ marginLeft: "40px" }}
                 />

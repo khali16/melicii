@@ -15,7 +15,7 @@ function App() {
       <Route path="/new-recipe">
         <NewRecipe />
       </Route>
-      <Route path="/recipes/:recipeTitle">
+      <Route path="/recipe/:recipeTitle">
         <SingleRecipe />
       </Route>
       <Route path="/image">
