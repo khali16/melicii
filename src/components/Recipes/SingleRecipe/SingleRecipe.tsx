@@ -1,17 +1,17 @@
 import { Box, ThemeProvider, Typography } from "@material-ui/core";
 import { theme } from "../../UI/Logo/Styles";
 import { Rating } from "react-simple-star-rating";
-import { recipes } from "../../DummyData";
 import smoothie from "../blueberry-smoothie.jpg";
 import styles from "./SingleRecipe.module.css";
 import { useParams } from "react-router-dom";
-
-type params = {
-  recipeTitle: string;
-};
+import useRecipes from "../../../hooks/useRecipes";
+import { RecipesData } from "../../../interfaces/db_interfaces";
+import { Params } from "../../../interfaces/app_interfaces";
 
 const SingleRecipe = () => {
-  const { recipeTitle } = useParams<params>();
+  const { recipesData } = useRecipes();
+  const recipes: RecipesData[] = recipesData;
+  const { recipeTitle } = useParams<Params>();
   const selectedRecipe = recipes.find(({ title }) => title === recipeTitle);
   return (
     <>

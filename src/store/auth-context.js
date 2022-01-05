@@ -5,6 +5,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
@@ -38,6 +39,26 @@ export function AuthProvider({ children }) {
     await signInWithEmailAndPassword(authentication, email, password);
   }
 
+  async function updateProfileUser(username) {
+    const auth = getAuth();
+    updateProfile(auth.currentUser, {
+      displayName: username,
+    })
+      .then(() => {
+        console.log("Profile Updated!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  async function addRecipe(recipe) {
+    addDoc(collection(db, "recipes"), {
+      ...recipe,
+      author: getAuth().currentUser.displayName,
+    });
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       console.log(user);
@@ -48,6 +69,8 @@ export function AuthProvider({ children }) {
   const value = {
     signup,
     login,
+    addRecipe,
+    updateProfileUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

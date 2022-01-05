@@ -11,11 +11,12 @@ import { useFormik } from "formik";
 import React from "react";
 import { theme, useStyles } from "../UI/Logo/Styles";
 import * as Yup from "yup";
-import {useForm} from '../../store/form-context'
+import { useForm } from "../../store/form-context";
 
 interface Props {
   nextStep: () => void;
 }
+//TO-DO: refactor
 
 const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
   const schema = Yup.object().shape({
@@ -24,20 +25,22 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
       .required("Please, select number.")
       .min(5, "Min 5 min"),
     difficulty: Yup.string().required("Please, select difficulty"),
+    type: Yup.string().required("Please, select type of meal"),
   });
 
-  const {setFirstForm, firstForm} = useForm()
+  const { setFirstForm, firstForm } = useForm();
 
   const formik = useFormik({
     initialValues: {
       title: "",
       prepTime: 0,
       difficulty: "",
+      type: "",
     },
     onSubmit: (values) => {
       console.log(values);
-      setFirstForm(values)
-      console.log("first Form: ", firstForm)
+      setFirstForm(values);
+      console.log("first Form: ", firstForm);
       nextStep();
     },
     validationSchema: schema,
@@ -84,6 +87,22 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
                   onChange={formik.handleChange}
                   helperText={formik.errors.prepTime}
                 />
+                <TextField
+                  id="type"
+                  select
+                  label="Type of meal"
+                  fullWidth
+                  name="type"
+                  required
+                  value={formik.values.type}
+                  onChange={formik.handleChange}
+                  helperText={formik.errors.type}
+                >
+                  <MenuItem value="breakfast">Breakfast</MenuItem>
+                  <MenuItem value="lunch">Lunch</MenuItem>
+                  <MenuItem value="dinner">Dinner</MenuItem>
+                  <MenuItem value="dessert">Dessert</MenuItem>
+                </TextField>
                 <TextField
                   id="difficulty"
                   select

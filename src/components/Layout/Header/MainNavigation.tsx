@@ -4,6 +4,7 @@ import LogInModal from "../../LogIn/LogInModal";
 import SignupModal from "../../Signup/SignupModal";
 import HeaderLogo from "../../UI/Logo/HeaderLogo";
 
+//TO-DO: refactor
 const MainNavigation = () => {
   const useStyles = makeStyles((theme) => ({
     toolbar: {
@@ -39,11 +40,12 @@ const MainNavigation = () => {
   const closeSignupModalHandler = () => {
     setOpenSignupModal(false);
   };
+
   return (
     <>
       <Toolbar className={classes.toolbar}>
         <HeaderLogo />
-        <Grid container justify="flex-end">
+        <Grid container justifyContent="flex-end">
           <Button
             variant="outlined"
             size="small"

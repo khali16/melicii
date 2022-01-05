@@ -2,7 +2,6 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Stepper from "@material-ui/core/Stepper";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import React from "react";
 import FirstStepRecipeForm from "../components/NewRecipe/FirstStepRecipeForm";
 import ImageForm from "../components/NewRecipe/ImageForm";
@@ -67,11 +66,7 @@ const NewRecipe = () => {
           </Step>
         ))}
       </Stepper>
-      <div>
-        <Typography className={classes.instructions}>
-          {getStepContent(activeStep)}
-        </Typography>
-      </div>
+      <div>{getStepContent(activeStep)}</div>
     </div>
   );
 };
