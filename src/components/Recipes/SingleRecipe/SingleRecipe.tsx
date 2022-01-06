@@ -1,7 +1,6 @@
 import { Box, ThemeProvider, Typography } from "@material-ui/core";
 import { theme } from "../../UI/Logo/Styles";
 import { Rating } from "react-simple-star-rating";
-import smoothie from "../blueberry-smoothie.jpg";
 import styles from "./SingleRecipe.module.css";
 import { useParams } from "react-router-dom";
 import useRecipes from "../../../hooks/useRecipes";
@@ -21,7 +20,11 @@ const SingleRecipe = () => {
           <Rating ratingValue={5} fillColor="#117777" />
         </div>
         <div className={styles.container}>
-          <img src={smoothie} className={styles.recipeImg} alt="" />
+          <img
+            src={selectedRecipe?.pictureUrl}
+            className={styles.recipeImg}
+            alt=""
+          />
           <Box className={styles.ingredientsBox}>
             {selectedRecipe
               ? selectedRecipe.ingredients.map((recipeIngredients) => (

@@ -2,6 +2,7 @@ export interface RecipesData {
   author: string;
   title: string;
   type: string;
+  pictureUrl: string;
   prepTime: number;
   difficulty: string;
   ingredients: {

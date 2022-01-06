@@ -22,7 +22,7 @@ const ImageForm = () => {
   const data = { ...firstForm, ...secondForm, ...thirdForm };
 
   const submitHandler = () => {
-    addRecipe(data);
+    addRecipe(data, img);
     console.log(data);
     history.push("/");
   };

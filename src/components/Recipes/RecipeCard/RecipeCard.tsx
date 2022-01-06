@@ -7,7 +7,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import styles from "./RecipeCard.module.css";
-import smoothie from "../blueberry-smoothie.jpg";
 import { theme } from "../../styles/Themes";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import { Rating } from "react-simple-star-rating";
@@ -24,7 +23,11 @@ const RecipeCard = () => {
         {recipesData.map((recipe: RecipesData) => (
           <Card className={styles.card} key={recipe.title}>
             <Link to={`/recipe/${recipe.title}`} className={styles.link}>
-              <CardMedia component="img" image={smoothie} />
+              <CardMedia
+                component="img"
+                image={recipe.pictureUrl}
+                height={200}
+              />
               <CardContent>
                 <ThemeProvider theme={theme}>
                   <Typography variant="overline" style={{ color: "#B84F1A" }}>

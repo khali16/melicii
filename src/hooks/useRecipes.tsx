@@ -1,22 +1,7 @@
 import { useEffect, useState } from "react";
 import { getFirestore, collection, getDocs, query } from "firebase/firestore";
 import { app } from "../firebase/config";
-
-interface RecipesData {
-  author: string;
-  title: string;
-  type: string;
-  prepTime: number;
-  difficulty: string;
-  ingredients: {
-    amount: string;
-    measure: string;
-    ingredient: string;
-  }[];
-  steps: {
-    step: string;
-  }[];
-}
+import { RecipesData } from "../interfaces/db_interfaces";
 
 const useRecipes = () => {
   const [recipesData, setRecipesData] = useState<RecipesData[]>([]);
