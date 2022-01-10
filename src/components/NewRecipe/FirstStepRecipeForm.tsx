@@ -38,9 +38,7 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
       type: "",
     },
     onSubmit: (values) => {
-      console.log(values);
       setFirstForm(values);
-      console.log("first Form: ", firstForm);
       nextStep();
     },
     validationSchema: schema,
