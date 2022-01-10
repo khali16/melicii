@@ -1,35 +1,36 @@
-import React, { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Fab,
-  Button,
-  Grid,
-  Box,
-} from "@material-ui/core";
+import { useState } from "react";
+import { CardContent, Fab, Button, Grid, Box } from "@material-ui/core";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import { useStyles } from "../UI/Logo/Styles";
-import { useFormik } from "formik";
 import { useHistory } from "react-router";
+import { useForm } from "../../store/form-context";
+import { useAuth } from "../../store/auth-context";
+
+//TO-DO refactor
 
 const ImageForm = () => {
   const classes = useStyles();
   const history = useHistory();
   const [img, setImg] = useState();
+  const { firstForm, secondForm, thirdForm } = useForm();
+  const { addRecipe } = useAuth();
 
   const uploadHandler = (event) => {
     setImg(URL.createObjectURL(event.currentTarget.files[0]));
   };
 
+  const data = { ...firstForm, ...secondForm, ...thirdForm };
+
   const submitHandler = () => {
+    addRecipe(data, img);
+    console.log(data);
     history.push("/");
   };
 
   return (
     <>
       <CardContent>
-        <Grid container justify="center" alignItems="center">
+        <Grid container justifyContent="center" alignItems="center">
           <input
             accept="image/*"
             id="contained-button-file"
@@ -45,7 +46,7 @@ const ImageForm = () => {
           </label>
         </Grid>
         <Box style={{ margin: "auto", width: "70%", marginTop: "20px" }}>
-          <img src={img} />
+          <img src={img} alt="" />
         </Box>
         {img && (
           <Box style={{ margin: "auto", width: "30%" }}>

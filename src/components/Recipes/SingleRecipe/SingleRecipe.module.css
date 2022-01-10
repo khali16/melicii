@@ -1,0 +1,38 @@
+.headline {
+  margin-top: 20px;
+  margin-left: 50px;
+  display: flex;
+}
+
+.container {
+  margin-left: 50px;
+  margin-top: 30px;
+  display: flex;
+  gap: 100px;
+}
+
+.recipeImg {
+  height: 500px;
+  width: 600px;
+}
+
+.ingredientsBox {
+  background: linear-gradient(to bottom, #d2f9f9, #ffffff);
+  width: 800px;
+}
+
+.methodHeadline {
+  margin-top: 30px;
+  margin-left: 50px;
+}
+
+.methodUnderline {
+  width: 600px;
+  height: 3px;
+  background-color: #f5d175;
+}
+
+.methodContainer {
+  width: 600px;
+  margin-top: 30px;
+}

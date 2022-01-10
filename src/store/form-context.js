@@ -12,6 +12,17 @@ export const FormProvider = ({ children }) => {
   const [secondForm, setSecondForm] = useState([]);
   const [thirdForm, setThirdForm] = useState([]);
 
-  const value = { setFirstForm, firstForm, setSecondForm, setThirdForm };
+  const [recipesData, setRecipesData] = useState([]);
+
+  const value = {
+    setFirstForm,
+    firstForm,
+    setSecondForm,
+    setThirdForm,
+    secondForm,
+    thirdForm,
+    recipesData,
+    setRecipesData,
+  };
   return <FormContext.Provider value={value}>{children}</FormContext.Provider>;
 };

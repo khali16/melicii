@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormik, FormikProvider, FieldArray, Formik, Form } from "formik";
+import { useFormik, FormikProvider, FieldArray, Form } from "formik";
 import {
   TextField,
   MenuItem,
@@ -11,11 +11,13 @@ import {
 import { useStyles, theme } from "../UI/Logo/Styles";
 import { ThemeProvider } from "@material-ui/styles";
 import * as Yup from "yup";
+import { useForm } from "../../store/form-context";
 
 interface Props {
   nextStep: () => void;
 }
 
+//TO-DO: refactor
 const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
   const classes = useStyles();
 
@@ -23,7 +25,7 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
     ingredients: Yup.array()
       .of(
         Yup.object().shape({
-          amount: Yup.number().required("wybierz"),
+          amount: Yup.string().required("wybierz"),
           measure: Yup.string().required("wybierz"),
           ingredient: Yup.string().required("wybierz"),
         })
@@ -32,12 +34,15 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
       .min(3, "At least 3 ingredients"),
   });
 
+  const { setSecondForm } = useForm();
+
   const formik = useFormik({
     initialValues: {
-      ingredients: [{ amount: 0, measure: "", ingredient: "" }],
+      ingredients: [{ amount: "", measure: "", ingredient: "" }],
     },
     onSubmit: (values) => {
       console.log(values);
+      setSecondForm(values);
       nextStep();
     },
     validationSchema: schema,
@@ -50,7 +55,7 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
   return (
     <>
       <FormikProvider value={formik}>
-        <Form>
+        <Form onSubmit={formik.handleSubmit}>
           <Card
             style={{ maxWidth: "700px", margin: "auto", marginTop: "20px" }}
           >
@@ -67,29 +72,33 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
                             <div key={index}>
                               <TextField
                                 required
-                                type="number"
+                                type="text"
                                 label="Amount"
                                 variant="outlined"
                                 margin="normal"
                                 name={`ingredients[${index}].amount`}
                                 value={ingredient.amount}
                                 onChange={formik.handleChange}
+                                helperText="elo"
                               />
                               <TextField
                                 required
-                                label="Measure"
                                 variant="outlined"
                                 margin="normal"
                                 name={`ingredients[${index}].measure`}
                                 value={ingredient.measure}
                                 onChange={formik.handleChange}
                                 select
+                                style={{ width: "85px" }}
                               >
                                 <MenuItem value="cup">Cup</MenuItem>
-                                <MenuItem value="tablespoon">
-                                  Tablespoon
-                                </MenuItem>
+                                <MenuItem value="tablespoon">Tbsp</MenuItem>
                                 <MenuItem value="kilo">Kilo</MenuItem>
+                                <MenuItem value="can">Can</MenuItem>
+                                <MenuItem value="piece">Piece</MenuItem>
+                                <MenuItem value="teaspoon">Teasp</MenuItem>
+                                <MenuItem value="package">Pckg</MenuItem>
+                                <MenuItem value="-">-</MenuItem>
                               </TextField>
                               <TextField
                                 required
@@ -131,7 +140,7 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
                     color="primary"
                     className={classes.submit}
                     onClick={handleSubmit}
-                    type="submit"
+                    type="button"
                   >
                     ten klinij
                   </Button>

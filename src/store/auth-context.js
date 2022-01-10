@@ -5,15 +5,10 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  getDocs,
-  addDoc,
-} from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 
 const AuthContext = React.createContext();
 
@@ -23,6 +18,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const db = getFirestore(app);
+  const storage = getStorage(app);
 
   async function signup(email, password, username) {
     const authentication = getAuth();
@@ -42,11 +38,28 @@ export function AuthProvider({ children }) {
 
   async function login(email, password) {
     const authentication = getAuth();
-    const response = await signInWithEmailAndPassword(
-      authentication,
-      email,
-      password
-    );
+    await signInWithEmailAndPassword(authentication, email, password);
+  }
+
+  async function updateProfileUser(username) {
+    const auth = getAuth();
+    updateProfile(auth.currentUser, {
+      displayName: username,
+    })
+      .then(() => {
+        console.log("Profile Updated!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  async function addRecipe(recipe, image) {
+    const storageRef = ref(storage, `${image.name}`).put(image);
+    addDoc(collection(db, "recipes"), {
+      ...recipe,
+      author: getAuth().currentUser.displayName,
+    }).then((error) => console.log("Error:", error));
   }
 
   useEffect(() => {
@@ -59,6 +72,8 @@ export function AuthProvider({ children }) {
   const value = {
     signup,
     login,
+    addRecipe,
+    updateProfileUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

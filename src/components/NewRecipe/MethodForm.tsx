@@ -5,11 +5,12 @@ import React from "react";
 import { theme, useStyles } from "../UI/Logo/Styles";
 import * as Yup from "yup";
 import CardHeader from "@material-ui/core/CardHeader";
+import { useForm } from "../../store/form-context";
 
 interface Props {
   nextStep: () => void;
 }
-
+//TO-DO: refactor
 const MethodForm: React.FC<Props> = ({ nextStep }) => {
   const classes = useStyles();
 
@@ -24,6 +25,8 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
       .min(2, "At least 2 steps"),
   });
 
+  const { setThirdForm } = useForm();
+
   const handleSubmit = () => {
     formik.handleSubmit();
   };
@@ -34,6 +37,7 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
     },
     onSubmit: (values) => {
       console.log(values);
+      setThirdForm(values);
       nextStep();
     },
     validationSchema: schema,
@@ -46,7 +50,7 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
         <CardContent>
           <ThemeProvider theme={theme}>
             <FormikProvider value={formik}>
-              <Form>
+              <Form onSubmit={formik.handleSubmit}>
                 <div>
                   <FieldArray
                     name="steps"
@@ -95,7 +99,7 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
                     color="primary"
                     className={classes.submit}
                     onClick={handleSubmit}
-                    type="submit"
+                    type="button"
                   >
                     Next Step
                   </Button>
