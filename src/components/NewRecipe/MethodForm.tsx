@@ -36,7 +36,6 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
       steps: [{ step: "" }, { step: "" }],
     },
     onSubmit: (values) => {
-      console.log(values);
       setThirdForm(values);
       nextStep();
     },

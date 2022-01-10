@@ -13,7 +13,7 @@ const FavoritesLink = () => {
           Favorites
         </Typography>
       </ThemeProvider>
-      <div className={styles.underline}></div>
+      <div className={styles.underline} />
     </div>
   );
 };

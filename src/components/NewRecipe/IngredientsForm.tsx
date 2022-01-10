@@ -12,6 +12,7 @@ import { useStyles, theme } from "../UI/Logo/Styles";
 import { ThemeProvider } from "@material-ui/styles";
 import * as Yup from "yup";
 import { useForm } from "../../store/form-context";
+import { IngredientsMeasurement } from "../../constants/IngredientsMeasurement";
 
 interface Props {
   nextStep: () => void;
@@ -41,7 +42,6 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
       ingredients: [{ amount: "", measure: "", ingredient: "" }],
     },
     onSubmit: (values) => {
-      console.log(values);
       setSecondForm(values);
       nextStep();
     },
@@ -91,14 +91,11 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
                                 select
                                 style={{ width: "85px" }}
                               >
-                                <MenuItem value="cup">Cup</MenuItem>
-                                <MenuItem value="tablespoon">Tbsp</MenuItem>
-                                <MenuItem value="kilo">Kilo</MenuItem>
-                                <MenuItem value="can">Can</MenuItem>
-                                <MenuItem value="piece">Piece</MenuItem>
-                                <MenuItem value="teaspoon">Teasp</MenuItem>
-                                <MenuItem value="package">Pckg</MenuItem>
-                                <MenuItem value="-">-</MenuItem>
+                                {IngredientsMeasurement.map((measurement) => (
+                                  <MenuItem value={measurement.value}>
+                                    {measurement.name}
+                                  </MenuItem>
+                                ))}
                               </TextField>
                               <TextField
                                 required

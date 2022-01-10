@@ -1,29 +1,66 @@
 .headline {
   margin-top: 20px;
-  margin-left: 50px;
+  margin-left: 150px;
   display: flex;
 }
 
-.container {
+.rating {
+  margin-left: 30px;
+}
+
+.info {
+  margin-left: 150px;
+  display: flex;
+}
+
+.prepTime {
   margin-left: 50px;
+}
+
+.container {
+  margin-left: 150px;
   margin-top: 30px;
   display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 100px;
 }
 
 .recipeImg {
-  height: 500px;
+  height: 800px;
   width: 600px;
+}
+
+.ingredients {
+  margin-top: 20px;
+  font-size: xx-large;
+  font-weight: bold;
+  margin-left: 40px;
+}
+
+.list {
+  margin-top: 20px;
 }
 
 .ingredientsBox {
   background: linear-gradient(to bottom, #d2f9f9, #ffffff);
-  width: 800px;
+  width: 40%;
+  height: auto !important;
+}
+
+.icon {
+  color: #117777;
+}
+
+.text {
+  font-size: large;
+  font-family: "Frank Ruhl Libre", "Georgia", "serif";
+  font-weight: bold;
 }
 
 .methodHeadline {
   margin-top: 30px;
-  margin-left: 50px;
+  margin-left: 150px;
 }
 
 .methodUnderline {

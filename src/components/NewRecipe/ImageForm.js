@@ -5,6 +5,7 @@ import { useStyles } from "../UI/Logo/Styles";
 import { useHistory } from "react-router";
 import { useForm } from "../../store/form-context";
 import { useAuth } from "../../store/auth-context";
+import styles from "./ImageForm.module.css";
 
 //TO-DO refactor
 
@@ -45,7 +46,7 @@ const ImageForm = () => {
             </Fab>
           </label>
         </Grid>
-        <Box style={{ margin: "auto", width: "70%", marginTop: "20px" }}>
+        <Box className={styles.box}>
           <img src={img} alt="" />
         </Box>
         {img && (
