@@ -1,11 +1,25 @@
+import { RecipesData, Rating } from "./../interfaces/db_interfaces";
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { RecipesData } from "../interfaces/db_interfaces";
 import axios from "axios";
 
 const fetchRecipes = createAsyncThunk("fetchRecipes", async () => {
   const req = await axios.get("/api").then((res) => res.data);
   return req as RecipesData[];
 });
+
+const addRecipe = createAsyncThunk(
+  "addRecipe",
+  async (recipeData: RecipesData) => {
+    await axios.post("/create", recipeData);
+  }
+);
+
+const addRating = createAsyncThunk(
+  "addRating",
+  async ({ title, rating }: Rating) => {
+    await axios.post("/rating", { title, rating });
+  }
+);
 
 export const recipesSlice = createSlice({
   name: "recipes",
@@ -16,8 +30,8 @@ export const recipesSlice = createSlice({
       state.recipes = action.payload;
     });
   },
-}); 
+});
 
 export const {} = recipesSlice.actions;
 export default recipesSlice.reducer;
-export { fetchRecipes };
+export { fetchRecipes, addRecipe, addRating };

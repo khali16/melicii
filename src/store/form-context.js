@@ -14,6 +14,12 @@ export const FormProvider = ({ children }) => {
 
   const [recipesData, setRecipesData] = useState([]);
 
+  const values = [3, 4, 4];
+  const calculateAverageHandler = (values) => {
+    return values.reduce((a, b) => (a + b) / values.length);
+  };
+  const averageValue = calculateAverageHandler(values);
+
   const value = {
     setFirstForm,
     firstForm,
@@ -23,6 +29,8 @@ export const FormProvider = ({ children }) => {
     thirdForm,
     recipesData,
     setRecipesData,
+    averageValue,
+    values,
   };
   return <FormContext.Provider value={value}>{children}</FormContext.Provider>;
 };

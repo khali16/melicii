@@ -1,68 +1,75 @@
 import { useState } from "react";
-import { CardContent, Fab, Button, Grid, Box } from "@material-ui/core";
-import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
-import { useStyles } from "../UI/Logo/Styles";
+import { Button, Box, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { useForm } from "../../store/form-context";
-import { useAuth } from "../../store/auth-context";
 import styles from "./ImageForm.module.css";
+import { useDispatch } from "react-redux";
+import { addRecipe } from "../../redux/recipes-slice";
 
 //TO-DO refactor
 
 const ImageForm = () => {
-  const classes = useStyles();
+  const dispatch = useDispatch();
   const history = useHistory();
-  const [img, setImg] = useState();
+  const [pictureUrl, setPictureUrl] = useState();
   const { firstForm, secondForm, thirdForm } = useForm();
-  const { addRecipe } = useAuth();
 
   const uploadHandler = (event) => {
-    setImg(URL.createObjectURL(event.currentTarget.files[0]));
+    setPictureUrl(event.currentTarget.value);
   };
 
-  const data = { ...firstForm, ...secondForm, ...thirdForm };
+  const cancelImgHandler = () => {
+    setPictureUrl();
+  };
+
+  const data = {
+    author: "Kamila",
+    pictureUrl,
+    ...firstForm,
+    ...secondForm,
+    ...thirdForm,
+  };
 
   const submitHandler = () => {
-    addRecipe(data, img);
-    console.log(data);
+    dispatch(addRecipe(data));
     history.push("/");
   };
 
   return (
     <>
-      <CardContent>
-        <Grid container justifyContent="center" alignItems="center">
-          <input
-            accept="image/*"
-            id="contained-button-file"
-            multiple
-            type="file"
-            style={{ display: "none" }}
-            onChange={uploadHandler}
-          />
-          <label htmlFor="contained-button-file">
-            <Fab component="span">
-              <AddPhotoAlternateIcon style={{ color: "#117777" }} />
-            </Fab>
-          </label>
-        </Grid>
-        <Box className={styles.box}>
-          <img src={img} alt="" />
-        </Box>
-        {img && (
-          <Box style={{ margin: "auto", width: "30%" }}>
+      {!pictureUrl && (
+        <TextField
+          type="url"
+          variant="outlined"
+          onChange={uploadHandler}
+          className={styles.urlInput}
+        />
+      )}
+      {pictureUrl && (
+        <>
+          <Box className={styles.box}>
+            <img src={pictureUrl} alt="" />
+          </Box>
+          <Box className={styles.submissionPanel}>
             <Button
               variant="contained"
               color="primary"
-              className={classes.submit}
+              className={styles.confirmButton}
               onClick={submitHandler}
-              fullWidth
             >
               POST
             </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={styles.cancelButton}
+              onClick={cancelImgHandler}
+            >
+              CANCEL
+            </Button>
           </Box>
-        )}
-      </CardContent>
+        </>
+      )}
     </>
   );
 };
