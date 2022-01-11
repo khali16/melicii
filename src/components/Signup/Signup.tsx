@@ -8,43 +8,10 @@ import styles from "./Signup.module.css";
 import Logo from "../UI/Logo/Logo";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useAuth } from "../../store/auth-context";
+import { signupSchema } from "./validationSchema";
 
 const Signup = () => {
   const classes = useStyles();
-  const { signup } = useAuth();
-
-  async function submitHandler(
-    email: string,
-    password: string,
-    username: string
-  ) {
-    try {
-      await signup(email, password, username);
-    } catch (error) {
-      alert(error);
-    }
-  }
-
-  const signupSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("Please, enter your email.")
-      .email("Please, enter a valid email."),
-    username: Yup.string()
-      .required("Please, enter your username.")
-      .min(4, "At least 4 letters."),
-    password: Yup.string()
-      .required("Please, enter your password.")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Must Contain 8 Characters, one uppercase, one lowercase, one number and one special case character."
-      ),
-    confirmPassword: Yup.string().oneOf(
-      [Yup.ref("password"), null],
-      "Passwords must match."
-    ),
-  });
 
   const formik = useFormik({
     initialValues: {
@@ -54,9 +21,7 @@ const Signup = () => {
       username: "",
     },
     validationSchema: signupSchema,
-    onSubmit: (values) => {
-      submitHandler(values.email, values.password, values.username);
-    },
+    onSubmit: (values) => {},
   });
   return (
     <Container component="main" maxWidth="xs">

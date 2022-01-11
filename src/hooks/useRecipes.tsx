@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import { getFirestore, collection, getDocs, query } from "firebase/firestore";
-import { app } from "../firebase/config";
 import { RecipesData } from "../interfaces/db_interfaces";
 import { useDispatch } from "react-redux";
 import { fetchRecipes } from "../redux/recipes-slice";

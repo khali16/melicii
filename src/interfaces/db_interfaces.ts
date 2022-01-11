@@ -3,6 +3,7 @@ export interface RecipesData {
   title: string;
   type: string;
   pictureUrl: string;
+  rating: number[];
   prepTime: number;
   difficulty: string;
   ingredients: {
@@ -13,4 +14,9 @@ export interface RecipesData {
   steps: {
     step: string;
   }[];
+}
+
+export interface Rating {
+  title: string;
+  rating: number;
 }

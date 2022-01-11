@@ -1,13 +1,13 @@
 import Search from "../components/Layout/Search";
 import FavoritesLink from "../components/Layout/FavoritesLink";
-import RecipeCard from "../components/Recipes/RecipeCard/RecipeCard";
+import RecipeCards from "../components/Recipes/RecipeCard/RecipeCards";
 
 const Welcome = () => {
   return (
     <>
       <Search />
       <FavoritesLink />
-      <RecipeCard />
+      <RecipeCards />
     </>
   );
 };

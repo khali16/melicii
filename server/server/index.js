@@ -1,8 +1,11 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const recipes = [
   {
@@ -13,6 +16,7 @@ const recipes = [
       "https://www.simplyrecipes.com/thmb/dBaY84TstQAL88opekC8Oy_0xa0=/580x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2012__04__buttery-tomato-pasta-vertical-735-f594b53b2e9341599b1767369c89c7ff.jpg",
     prepTime: 30,
     difficulty: "easy",
+    rating: [4, 5, 5, 5, 4],
     ingredients: [
       {
         amount: "1/2",
@@ -80,6 +84,7 @@ const recipes = [
       "https://www.simplyrecipes.com/thmb/SYy--AvfhM4CqsLS862E9aJ3-O4=/648x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-Blueberry-Smoothie-LEAD-5-5385cdff34f74036a38b325c04cc0d27.jpg",
     prepTime: 5,
     difficulty: "easy",
+    rating: [4, 5, 5, 5, 4],
     ingredients: [
       {
         amount: "1",
@@ -126,6 +131,7 @@ const recipes = [
       "https://www.simplyrecipes.com/thmb/kk_zUHpdi_oSwEgv2nBYMMgUAV0=/648x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-Tempeh-Bacon-LEAD-4-43bba59d8ca54699bded4f70aa6a3aa7.jpg",
     prepTime: 85,
     difficulty: "Medium",
+    rating: [4, 5, 5, 5, 4],
     ingredients: [
       {
         amount: "1",
@@ -178,6 +184,7 @@ const recipes = [
       "https://www.simplyrecipes.com/thmb/YrduXBGsumVjeYathNL-7RTuqY4=/648x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-Grandmas-Oatmeal-Cookies-LEAD-03-V-bc960fb5a0f247458548f01a39c4e764.jpg",
     prepTime: 30,
     difficulty: "Medium",
+    rating: [4, 5, 5, 5, 4],
     ingredients: [
       {
         amount: "1",
@@ -249,6 +256,17 @@ const recipes = [
     ],
   },
 ];
+
+app.post("/create", (req, res) => {
+  recipes.push(req.body);
+  console.log(recipes);
+});
+
+app.post("/rating", (req, res) => {
+  const selectedRecipe = recipes.find(({ title }) => title === req.body.title);
+  selectedRecipe.rating.push(req.body.rating);
+  console.log(selectedRecipe.rating);
+});
 
 app.get("/api", (req, res) => {
   res.json(recipes);

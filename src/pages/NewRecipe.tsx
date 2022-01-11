@@ -38,7 +38,6 @@ const NewRecipe = () => {
   const steps = getSteps();
 
   const handleNext = () => {
-    console.log(activeStep);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
