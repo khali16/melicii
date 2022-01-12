@@ -19,3 +19,11 @@
   text-decoration: inherit;
   color: inherit;
 }
+
+.rating {
+  float: right;
+}
+
+.ratingIcon {
+  color: #117777;
+}

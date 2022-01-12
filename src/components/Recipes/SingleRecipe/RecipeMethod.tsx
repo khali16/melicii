@@ -14,8 +14,8 @@ const RecipeMethod: React.FC<OwnProps> = ({ steps }) => {
       <Typography variant="h3">Method</Typography>
       <div className={styles.methodUnderline} />
       <div className={styles.methodContainer}>
-        {steps.map((recipeSteps) => (
-          <Typography variant="h5" gutterBottom>
+        {steps.map((recipeSteps, index) => (
+          <Typography variant="h5" gutterBottom key={index}>
             {recipeSteps.step}
           </Typography>
         ))}

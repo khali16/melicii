@@ -8,6 +8,10 @@
   margin-left: 30px;
 }
 
+.ratingIcon {
+  color: #117777;
+}
+
 .info {
   margin-left: 150px;
   display: flex;

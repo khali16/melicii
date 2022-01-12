@@ -255,6 +255,174 @@ const recipes = [
       },
     ],
   },
+  {
+    author: "Kuba",
+    title: "Fish Stew",
+    type: "Dinner",
+    pictureUrl:
+      "https://www.feastingathome.com/wp-content/uploads/2017/06/Brazilian-Fish-Stew-21.jpg",
+    prepTime: 35,
+    difficulty: "Medium",
+    rating: [4, 4, 3, 4, 4],
+    ingredients: [
+      {
+        amount: "6",
+        measure: "tablespoons",
+        ingredient: "extra virgin olive oil",
+      },
+      {
+        amount: "1",
+        measure: "-",
+        ingredient: "medium onion",
+      },
+      {
+        amount: "3",
+        measure: "-",
+        ingredient: "large cloves garlic, minced",
+      },
+      {
+        amount: "2/3",
+        measure: "cup",
+        ingredient: "fresh parsley leaves, chopped",
+      },
+      {
+        amount: "1",
+        measure: "cup",
+        ingredient: "chopped tomato",
+      },
+      {
+        amount: "2",
+        measure: "teaspoons",
+        ingredient: "tomato paste",
+      },
+      {
+        amount: "1",
+        measure: "cup",
+        ingredient: "clam juice",
+      },
+      {
+        amount: "1/2",
+        measure: "cup",
+        ingredient: "dry white wine",
+      },
+      {
+        amount: "0.7",
+        measure: "kilo",
+        ingredient:
+          "white fish fillets such as halibut, cod, red snapper, or sea bass, cut into 2-inch pieces",
+      },
+      {
+        amount: "1",
+        measure: "teaspoon",
+        ingredient: "oregano",
+      },
+      {
+        amount: "1",
+        measure: "teaspoon",
+        ingredient: "thyme",
+      },
+      {
+        amount: "1/8",
+        measure: "teaspoon",
+        ingredient: "tabasco sauce",
+      },
+      {
+        amount: "1/8",
+        measure: "teaspoon",
+        ingredient: "black pepper",
+      },
+      {
+        amount: "1",
+        measure: "teaspoon",
+        ingredient: "salt",
+      },
+    ],
+    steps: [
+      {
+        step: "Heat olive oil in a large, thick-bottomed pot over medium-high heat. Add onion and sauté 4 minutes. Add the garlic and cook a minute more. Add parsley and stir 2 minutes. Add tomato and tomato paste, and gently cook for 10 more minutes or so.",
+      },
+      {
+        step: "Add clam juice, dry white wine, and fish. Bring to a simmer, and let simmer until the fish is cooked through and easily flakes apart, about 3 to 5 minutes. Add seasoning — salt, pepper, oregano, thyme, and Tabasco. Add more salt and pepper to taste.",
+      },
+      {
+        step: "Ladle into individual bowls and serve. Great served with crusty bread for dipping in the fish stew broth.",
+      },
+    ],
+  },
+  {
+    author: "Kuba",
+    title: "Pork Stir Fry With Green Onion",
+    type: "Dinner",
+    pictureUrl:
+      "https://www.simplyrecipes.com/thmb/kEy41YGTaMk871JsKiyj8Bjf07U=/648x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2013__01__pork-stir-fry-green-onion-vertical-a-1600-2db7319f57da45e786e9a7f2cc90451c.jpg",
+    prepTime: 25,
+    difficulty: "Medium",
+    rating: [3, 3, 3, 3, 4],
+    ingredients: [
+      {
+        amount: "1/2",
+        measure: "kilo",
+        ingredient: "pork loin or boneless pork chops",
+      },
+      {
+        amount: "2",
+        measure: "tablespoons",
+        ingredient: "soy sauce",
+      },
+      {
+        amount: "1",
+        measure: "teaspoon",
+        ingredient: "sugar",
+      },
+      {
+        amount: "1",
+        measure: "teaspoon",
+        ingredient: "cornstarch",
+      },
+      {
+        amount: "4",
+        measure: "tablespoons",
+        ingredient: "peanut oil or canola oil",
+      },
+      {
+        amount: "5",
+        measure: "-",
+        ingredient: "gloves garlic, thinly sliced",
+      },
+      {
+        amount: "1",
+        measure: "cup",
+        ingredient: "green onion",
+      },
+      {
+        amount: "1/2",
+        measure: "teaspoon",
+        ingredient: "seasame oil",
+      },
+      {
+        amount: "-",
+        measure: "-",
+        ingredient: "cooked rice",
+      },
+    ],
+    steps: [
+      {
+        step: "Pork chops tend to come in thicknesses either around 1/2 inch thick or an inch thick. If you are working with a thick boneless pork chop, start by slicing it into two thin layers, horizontally. If starting with pork loin, cut slices 1/2 inch thick. Put the slices under some plastic wrap or wax paper and pound them thin with a rubber mallet, meat mallet or even an empty wine bottle. This will help tenderize the meat. The slices should be about 1/4 inch thick. Cut the pork across the grain into thin strips, about 1 1/2 inches long.",
+      },
+      {
+        step: "Put the soy sauce, sugar, and cornstarch into a large bowl and whisk to combine. Add the pork strips to the bowl with the marinade and toss to coat completely. Set aside for at least 10 minutes.",
+      },
+      {
+        step: "Heat the peanut oil in a wok or large sauté pan on high heat. When the oil is hot (shimmering but not smoking) add the garlic slices and stir-fry until they begin to turn brown at the edges, about 30 seconds. Add the pork strips and stir-fry until the pork changes color, about 90 seconds, stirring constantly.",
+      },
+      {
+        step: "Add the sliced green onions and continue to stir-fry for another minute, or until the green onions wilt. Turn off the heat and stir in the sesame oil, if using.",
+      },
+      {
+        step: "Serve immediately. Serve alone (paleo and low carb), or with rice.",
+      },
+    ],
+  },
 ];
 
 app.post("/create", (req, res) => {
@@ -264,7 +432,11 @@ app.post("/create", (req, res) => {
 
 app.post("/rating", (req, res) => {
   const selectedRecipe = recipes.find(({ title }) => title === req.body.title);
-  selectedRecipe.rating.push(req.body.rating);
+  if (req.body.rating === null) {
+    selectedRecipe.rating.push(5);
+  } else {
+    selectedRecipe.rating.push(req.body.rating);
+  }
   console.log(selectedRecipe.rating);
 });
 

@@ -10,13 +10,15 @@ import { Link } from "react-router-dom";
 import styles from "./RecipeCard.module.css";
 import { theme } from "../../styles/Themes";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
-import { Rating } from "react-simple-star-rating";
+import Rating from "@mui/material/Rating";
+import StarIcon from "@mui/icons-material/Star";
 
 interface OwnProps {
   title: string;
   pictureUrl: string;
   type: string;
   prepTime: number;
+  average: number;
 }
 
 const RecipeCard: React.FC<OwnProps> = ({
@@ -24,6 +26,7 @@ const RecipeCard: React.FC<OwnProps> = ({
   pictureUrl,
   type,
   prepTime,
+  average,
 }) => {
   return (
     <Card className={styles.card} key={title}>
@@ -37,19 +40,19 @@ const RecipeCard: React.FC<OwnProps> = ({
             <Typography variant="h5">{title}</Typography>
           </ThemeProvider>
         </CardContent>
-        <CardActions>
-          <QueryBuilderIcon />
-          <Typography variant="overline" component="p">
-            {prepTime} min
-          </Typography>
-          <Rating
-            ratingValue={5}
-            size={25}
-            fillColor="#117777"
-            style={{ marginLeft: "40px" }}
-          />
-        </CardActions>
       </Link>
+      <CardActions>
+        <QueryBuilderIcon />
+        <Typography variant="overline" component="p">
+          {prepTime} min
+        </Typography>
+        <Rating
+          value={Math.round(average)}
+          readOnly
+          icon={<StarIcon className={styles.ratingIcon} />}
+          className={styles.rating}
+        />
+      </CardActions>
     </Card>
   );
 };
