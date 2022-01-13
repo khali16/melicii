@@ -1,0 +1,25 @@
+.menuButton {
+  width: 250px;
+  margin-left: 100px !important;
+}
+
+.menuButton:hover {
+  background-color: white;
+}
+
+.buttonText {
+  font-weight: bold;
+}
+
+.icon {
+  color: #b84f1a;
+}
+
+.menuContainer {
+  background-color: green;
+}
+
+.menu {
+  width: 170px;
+  background-color: green;
+}

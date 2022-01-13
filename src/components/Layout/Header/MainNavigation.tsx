@@ -3,6 +3,7 @@ import { useState } from "react";
 import LogInModal from "../../LogIn/LogInModal";
 import SignupModal from "../../Signup/SignupModal";
 import HeaderLogo from "../../UI/Logo/HeaderLogo";
+import Menu from "./Menu/DropdownMenu";
 
 //TO-DO: refactor
 const MainNavigation = () => {
@@ -45,6 +46,7 @@ const MainNavigation = () => {
     <>
       <Toolbar className={classes.toolbar}>
         <HeaderLogo />
+        <Menu />
         <Grid container justifyContent="flex-end">
           <Button
             variant="outlined"

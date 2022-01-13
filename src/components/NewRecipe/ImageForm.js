@@ -24,7 +24,7 @@ const ImageForm = () => {
 
   const data = {
     author: "Kamila",
-    rating: [],
+    rating: [0],
     pictureUrl,
     ...firstForm,
     ...secondForm,
