@@ -27,6 +27,10 @@
   line-height: 0.2;
 }
 
+.logoTitle:hover {
+  color: #117777;
+}
+
 .logoSubtitle {
   font-family: "Frank Ruhl Libre";
   font-style: normal;
@@ -35,4 +39,8 @@
   line-height: 40px;
   color: #38a870;
   letter-spacing: 14px;
+}
+
+.logoSubtitle:hover {
+  color: #38a870;
 }

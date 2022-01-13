@@ -1,5 +1,6 @@
 import { Button, Grid, makeStyles, Toolbar } from "@material-ui/core";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import LogInModal from "../../LogIn/LogInModal";
 import SignupModal from "../../Signup/SignupModal";
 import HeaderLogo from "../../UI/Logo/HeaderLogo";
@@ -45,7 +46,9 @@ const MainNavigation = () => {
   return (
     <>
       <Toolbar className={classes.toolbar}>
-        <HeaderLogo />
+        <Link to="/">
+          <HeaderLogo />
+        </Link>
         <Menu />
         <Grid container justifyContent="flex-end">
           <Button
