@@ -13,7 +13,7 @@ const LogInModal: React.FC<Props> = ({ openModal, closeModal }) => {
     <div>
       <Modal open={openModal} onClose={closeModal}>
         <div className={styles.modal}>
-          <LogIn />
+          <LogIn closeModal={closeModal} />
         </div>
       </Modal>
     </div>

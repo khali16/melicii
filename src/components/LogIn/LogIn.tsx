@@ -9,16 +9,27 @@ import Logo from "../UI/Logo/Logo";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { loginSchema } from "./validationSchema";
 import { useFormik } from "formik";
+import { useAuth } from "../../store/auth-context";
+import { useEffect } from "react";
 
-const LogIn = () => {
+interface OwnProps {
+  closeModal: () => void;
+}
+
+const LogIn: React.FC<OwnProps> = ({ closeModal }) => {
   const classes = useStyles();
+  const { loginHandler, rejectedLogin } = useAuth();
+  useEffect(() => {}, [rejectedLogin]);
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      loginHandler(values.email, values.password);
+      closeModal();
+    },
     validationSchema: loginSchema,
   });
 

@@ -1,17 +1,21 @@
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import { useStyles, theme } from "../UI/Logo/Styles";
-import Link from "@material-ui/core/Link";
+import { theme } from "../UI/Logo/Styles";
 import Container from "@material-ui/core/Container";
 import styles from "./Signup.module.css";
 import Logo from "../UI/Logo/Logo";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import { signupSchema } from "./validationSchema";
+import { useAuth } from "../../store/auth-context";
 
-const Signup = () => {
-  const classes = useStyles();
+interface OwnProps {
+  closeModal: () => void;
+}
+
+const Signup: React.FC<OwnProps> = ({ closeModal }) => {
+  const { addNewUser } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -21,14 +25,17 @@ const Signup = () => {
       username: "",
     },
     validationSchema: signupSchema,
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      addNewUser(values.email, values.username, values.password);
+      closeModal();
+    },
   });
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <div className={styles.paper}>
         <Logo />
-        <form className={classes.form} onSubmit={formik.handleSubmit}>
+        <form className={styles.form} onSubmit={formik.handleSubmit}>
           <ThemeProvider theme={theme}>
             <TextField
               variant="outlined"
@@ -91,24 +98,10 @@ const Signup = () => {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            className={styles.submit}
           >
             <p className={styles.font}>SIGN UP</p>
           </Button>
-          <div style={{ float: "right" }}>
-            <Link
-              href="#"
-              variant="body2"
-              style={{
-                color: "black",
-                fontFamily: "Frank Ruhl Libre",
-                fontSize: "normal",
-                fontWeight: "bold",
-              }}
-            >
-              {"Already registered? Log In now."}
-            </Link>
-          </div>
         </form>
       </div>
     </Container>
