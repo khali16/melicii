@@ -6,6 +6,9 @@ import { theme, useStyles } from "../UI/Logo/Styles";
 import * as Yup from "yup";
 import CardHeader from "@material-ui/core/CardHeader";
 import { useForm } from "../../store/form-context";
+import styles from "./MethodForm.module.css";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
 
 interface Props {
   nextStep: () => void;
@@ -44,7 +47,7 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
 
   return (
     <>
-      <Card style={{ maxWidth: "700px", margin: "auto", marginTop: "20px" }}>
+      <Card className={styles.card}>
         <CardHeader style={{ color: "red" }}>Add Recipe</CardHeader>
         <CardContent>
           <ThemeProvider theme={theme}>
@@ -65,30 +68,32 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
                               required
                               variant="outlined"
                               margin="normal"
-                              fullWidth
+                              className={styles.stepInput}
                               multiline
                               minRows={2}
                             />
                             {formik.values.steps.length > 2 && (
-                              <button
+                              <DeleteIcon
                                 type="button"
                                 onClick={() => arrayHelpers.remove(index)}
+                                className={styles.deleteIcon}
                               >
                                 -
-                              </button>
+                              </DeleteIcon>
                             )}
-                            <button
-                              type="button"
-                              onClick={() =>
-                                arrayHelpers.push({
-                                  step: "",
-                                })
-                              }
-                            >
-                              +
-                            </button>
                           </div>
                         ))}
+                        <AddIcon
+                          type="button"
+                          onClick={() =>
+                            arrayHelpers.push({
+                              step: "",
+                            })
+                          }
+                          className={styles.addIcon}
+                        >
+                          +
+                        </AddIcon>
                       </div>
                     )}
                   />

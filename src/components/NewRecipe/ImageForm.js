@@ -24,6 +24,7 @@ const ImageForm = () => {
 
   const data = {
     author: "Kamila",
+    rating: [0],
     pictureUrl,
     ...firstForm,
     ...secondForm,
@@ -50,24 +51,22 @@ const ImageForm = () => {
           <Box className={styles.box}>
             <img src={pictureUrl} alt="" />
           </Box>
-          <Box className={styles.submissionPanel}>
-            <Button
-              variant="contained"
-              color="primary"
-              className={styles.confirmButton}
-              onClick={submitHandler}
-            >
-              POST
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              className={styles.cancelButton}
-              onClick={cancelImgHandler}
-            >
-              CANCEL
-            </Button>
-          </Box>
+          <Button
+            variant="contained"
+            color="primary"
+            className={styles.cancelButton}
+            onClick={cancelImgHandler}
+          >
+            CANCEL
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            className={styles.confirmButton}
+            onClick={submitHandler}
+          >
+            POST
+          </Button>
         </>
       )}
     </>

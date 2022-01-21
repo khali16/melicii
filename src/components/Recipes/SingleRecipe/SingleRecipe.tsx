@@ -3,7 +3,7 @@ import { theme } from "../../styles/Themes";
 import styles from "./SingleRecipe.module.css";
 import { useParams } from "react-router-dom";
 import { RecipesData } from "../../../interfaces/db_interfaces";
-import { Params } from "../../../interfaces/app_interfaces";
+import { RecipeParams } from "../../../interfaces/app_interfaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import SingleRecipeHeadline from "./SingleRecipeHeadline";
@@ -12,7 +12,7 @@ import RecipeMethod from "./RecipeMethod";
 
 const SingleRecipe = () => {
   const recipes = useSelector((state: RootState) => state.recipes.recipes);
-  const { recipeTitle } = useParams<Params>();
+  const { recipeTitle } = useParams<RecipeParams>();
 
   const findSelectedRecipe = filterRecipes(recipes, recipeTitle);
 

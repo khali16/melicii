@@ -1,5 +1,5 @@
 import { RecipesData, Rating } from "./../interfaces/db_interfaces";
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const fetchRecipes = createAsyncThunk("fetchRecipes", async () => {

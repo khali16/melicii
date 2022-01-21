@@ -6,10 +6,7 @@ const FavoritesLink = () => {
   return (
     <div className={styles.container}>
       <ThemeProvider theme={theme}>
-        <Typography
-          variant="h4"
-          style={{ textAlign: "center", padding: "30px 0 30px" }}
-        >
+        <Typography variant="h4" className={styles.text}>
           Favorites
         </Typography>
       </ThemeProvider>

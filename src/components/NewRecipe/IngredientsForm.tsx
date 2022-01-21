@@ -4,15 +4,18 @@ import {
   TextField,
   MenuItem,
   Card,
-  CardHeader,
   CardContent,
   Button,
+  Typography,
 } from "@material-ui/core";
-import { useStyles, theme } from "../UI/Logo/Styles";
 import { ThemeProvider } from "@material-ui/styles";
 import * as Yup from "yup";
 import { useForm } from "../../store/form-context";
 import { IngredientsMeasurement } from "../../constants/IngredientsMeasurement";
+import { theme } from "../styles/Themes";
+import styles from "./IngredientsForm.module.css";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
 
 interface Props {
   nextStep: () => void;
@@ -20,8 +23,6 @@ interface Props {
 
 //TO-DO: refactor
 const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
-  const classes = useStyles();
-
   const schema = Yup.object().shape({
     ingredients: Yup.array()
       .of(
@@ -39,7 +40,11 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
 
   const formik = useFormik({
     initialValues: {
-      ingredients: [{ amount: "", measure: "", ingredient: "" }],
+      ingredients: [
+        { amount: "", measure: "", ingredient: "" },
+        { amount: "", measure: "", ingredient: "" },
+        { amount: "", measure: "", ingredient: "" },
+      ],
     },
     onSubmit: (values) => {
       setSecondForm(values);
@@ -56,78 +61,81 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
     <>
       <FormikProvider value={formik}>
         <Form onSubmit={formik.handleSubmit}>
-          <Card
-            style={{ maxWidth: "700px", margin: "auto", marginTop: "20px" }}
-          >
-            <CardHeader>Add at least 3 ingredients </CardHeader>
-            <CardContent>
-              <ThemeProvider theme={theme}>
-                <div className={classes.inputs}>
+          <Card className={styles.card}>
+            <ThemeProvider theme={theme}>
+              <Typography variant="h5" className={styles.header}>
+                Add at least 3 ingredients
+              </Typography>
+              <CardContent>
+                <div className={styles.inputs}>
                   <FieldArray
                     name="ingredients"
                     render={(arrayHelpers) => (
                       <div>
-                        {formik.values.ingredients.length > 0 &&
-                          formik.values.ingredients.map((ingredient, index) => (
-                            <div key={index}>
-                              <TextField
-                                required
-                                type="text"
-                                label="Amount"
-                                variant="outlined"
-                                margin="normal"
-                                name={`ingredients[${index}].amount`}
-                                value={ingredient.amount}
-                                onChange={formik.handleChange}
-                                helperText="elo"
-                              />
-                              <TextField
-                                required
-                                variant="outlined"
-                                margin="normal"
-                                name={`ingredients[${index}].measure`}
-                                value={ingredient.measure}
-                                onChange={formik.handleChange}
-                                select
-                                style={{ width: "85px" }}
-                              >
-                                {IngredientsMeasurement.map((measurement) => (
-                                  <MenuItem value={measurement.value}>
+                        {formik.values.ingredients.map((ingredient, index) => (
+                          <div key={index}>
+                            <TextField
+                              required
+                              type="text"
+                              label="Amount"
+                              variant="outlined"
+                              margin="normal"
+                              name={`ingredients[${index}].amount`}
+                              value={ingredient.amount}
+                              onChange={formik.handleChange}
+                            />
+                            <TextField
+                              required
+                              variant="outlined"
+                              margin="normal"
+                              name={`ingredients[${index}].measure`}
+                              value={ingredient.measure}
+                              onChange={formik.handleChange}
+                              select
+                              className={styles.measureInput}
+                            >
+                              {IngredientsMeasurement.map(
+                                (measurement, index) => (
+                                  <MenuItem
+                                    value={measurement.value}
+                                    key={index}
+                                  >
                                     {measurement.name}
                                   </MenuItem>
-                                ))}
-                              </TextField>
-                              <TextField
-                                required
-                                label="Ingredient"
-                                variant="outlined"
-                                margin="normal"
-                                name={`ingredients[${index}].ingredient`}
-                                value={ingredient.ingredient}
-                                onChange={formik.handleChange}
-                              />
-                              {formik.values.ingredients.length > 1 && (
-                                <button
-                                  type="button"
-                                  onClick={() => arrayHelpers.remove(index)}
-                                >
-                                  -
-                                </button>
+                                )
                               )}
-                            </div>
-                          ))}
-                        <button
-                          type="button"
+                            </TextField>
+                            <TextField
+                              required
+                              label="Ingredient"
+                              variant="outlined"
+                              margin="normal"
+                              name={`ingredients[${index}].ingredient`}
+                              value={ingredient.ingredient}
+                              onChange={formik.handleChange}
+                            />
+                            {formik.values.ingredients.length > 3 && (
+                              <DeleteIcon
+                                onClick={() => arrayHelpers.remove(index)}
+                                className={styles.deleteIcon}
+                              >
+                                -
+                              </DeleteIcon>
+                            )}
+                          </div>
+                        ))}
+                        <AddIcon
+                          className={styles.addIcon}
                           onClick={() =>
                             arrayHelpers.push({
-                              amount: 0,
+                              amount: "",
                               measure: "",
                               ingredient: "",
                             })
                           }
                         >
                           +
-                        </button>
+                        </AddIcon>
                       </div>
                     )}
                   />{" "}
@@ -135,15 +143,15 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
                     fullWidth
                     variant="contained"
                     color="primary"
-                    className={classes.submit}
+                    className={styles.submitButton}
                     onClick={handleSubmit}
                     type="button"
                   >
-                    ten klinij
+                    NEXT
                   </Button>
                 </div>
-              </ThemeProvider>
-            </CardContent>
+              </CardContent>
+            </ThemeProvider>
           </Card>
         </Form>
       </FormikProvider>

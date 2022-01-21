@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addRating } from "../../../redux/recipes-slice";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import styles from "./SingleRecipe.module.css";
+import StarIcon from "@mui/icons-material/Star";
 
 interface OwnProps {
   title: string;
@@ -26,8 +27,10 @@ const SingleRecipeHeadline: React.FC<OwnProps> = ({
       <div className={styles.headline}>
         <Typography variant="h3">{title}</Typography>
         <Rating
+          name="wtfr"
           value={Math.round(countedAverageRating)}
           onChange={(event, newValue) => {
+            console.log(newValue);
             dispatch(
               addRating({
                 title: title,
@@ -36,6 +39,8 @@ const SingleRecipeHeadline: React.FC<OwnProps> = ({
               })
             );
           }}
+          icon={<StarIcon className={styles.ratingIcon} />}
+          className={styles.rating}
         />
       </div>
       <div className={styles.info}>

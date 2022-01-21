@@ -1,35 +1,36 @@
 import {
   Card,
   CardActions,
-  CardMedia,
   CardContent,
+  CardMedia,
   ThemeProvider,
   Typography,
 } from "@material-ui/core";
+import { Rating } from "@mui/material";
+import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./RecipeCard.module.css";
 import { theme } from "../../styles/Themes";
+import styles from "./Recipes.module.css";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
-import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 
 interface OwnProps {
   title: string;
-  pictureUrl: string;
   type: string;
-  prepTime: number;
+  pictureUrl: string;
   average: number;
+  prepTime: number;
 }
 
-const RecipeCard: React.FC<OwnProps> = ({
+const TypeRecipe: React.FC<OwnProps> = ({
   title,
   pictureUrl,
+  average,
   type,
   prepTime,
-  average,
 }) => {
   return (
-    <Card className={styles.card} key={title}>
+    <Card className={styles.card}>
       <Link to={`/recipe/${title}`} className={styles.link}>
         <CardMedia component="img" image={pictureUrl} height={200} />
         <CardContent>
@@ -57,4 +58,4 @@ const RecipeCard: React.FC<OwnProps> = ({
   );
 };
 
-export default RecipeCard;
+export default TypeRecipe;

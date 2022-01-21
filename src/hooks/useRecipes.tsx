@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { RecipesData } from "../interfaces/db_interfaces";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../redux/recipes-slice";
+import { RootState } from "../redux/store";
 
 const useRecipes = () => {
   const dispatch = useDispatch();
@@ -9,13 +10,14 @@ const useRecipes = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     dispatch(fetchRecipes());
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setRecipesData(data));
+    setLoading(false);
   }, []);
 
-  return { recipesData };
+  const recipes = useSelector((state: RootState) => state.recipes.recipes);
+
+  return { recipes, loading };
 };
 
 export default useRecipes;

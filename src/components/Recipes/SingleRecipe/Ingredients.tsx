@@ -20,8 +20,8 @@ const Ingredients: React.FC<OwnProps> = ({ ingredients }) => {
         <Typography variant="h4">Ingredients:</Typography>
       </Box>
       <List className={styles.list}>
-        {ingredients.map((recipeIngredients) => (
-          <ListItem>
+        {ingredients.map((recipeIngredients, index) => (
+          <ListItem key={index}>
             <ListItemIcon>
               <CircleIcon className={styles.icon} />
             </ListItemIcon>

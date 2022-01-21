@@ -1,33 +1,45 @@
 import styles from "./RecipeCard.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { useEffect } from "react";
-import { fetchRecipes } from "../../../redux/recipes-slice";
+import { RecipesData } from "../../../interfaces/db_interfaces";
 import RecipeCard from "./RecipeCard";
+import useRecipes from "../../../hooks/useRecipes";
 
 const RecipeCards = () => {
-  const dispatch = useDispatch();
+  const { recipes, loading } = useRecipes();
 
-  useEffect(() => {
-    dispatch(fetchRecipes());
-  }, []);
-
-  const recipes = useSelector((state: RootState) => state.recipes.recipes);
+  const fourFavouritesRecipes = selectFourFavoritesRecipes(recipes);
 
   return (
     <>
-      <div className={styles.cardsContainer}>
-        {recipes.map((recipe) => (
-          <RecipeCard
-            title={recipe.title}
-            type={recipe.type}
-            pictureUrl={recipe.pictureUrl}
-            prepTime={recipe.prepTime}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className={styles.cardsContainer}>
+          {fourFavouritesRecipes.map((recipe, index) => (
+            <RecipeCard
+              key={index}
+              title={recipe.title}
+              type={recipe.type}
+              pictureUrl={recipe.pictureUrl}
+              prepTime={recipe.prepTime}
+              average={recipe.average}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };
 
 export default RecipeCards;
+
+const countAverage = (ratings: number[] = []): number => {
+  const sum = ratings.reduce((a, b) => a + b);
+  return sum / ratings.length;
+};
+
+const selectFourFavoritesRecipes = (recipes: RecipesData[]) => {
+  return recipes
+    .map((recipe) => ({ ...recipe, average: countAverage(recipe.rating) }))
+    .sort((a, b) => b.average - a.average)
+    .slice(0, 4);
+};
