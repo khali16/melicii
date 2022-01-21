@@ -29,8 +29,6 @@ export const FormProvider = ({ children }) => {
     thirdForm,
     recipesData,
     setRecipesData,
-    averageValue,
-    values,
   };
   return <FormContext.Provider value={value}>{children}</FormContext.Provider>;
 };
