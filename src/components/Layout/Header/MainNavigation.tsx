@@ -8,11 +8,12 @@ import HeaderLogo from "../../UI/Logo/HeaderLogo";
 import Menu from "./Menu/DropdownMenu";
 import styles from "./MainNavigation.module.css";
 import ErrorAlert from "./ErrorAlert/ErrorAlert";
+import UserMenu from "./UserMenu/UserMenu";
 
 //TO-DO: refactor
 const MainNavigation = () => {
-  const { logoutHandler, user, rejectedLogin } = useAuth();
-  useEffect(() => {}, [user, rejectedLogin]);
+  const { logoutHandler, user, rejectedLogin, isUserLoggedIn } = useAuth();
+  useEffect(() => {}, [user, rejectedLogin, isUserLoggedIn]);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const history = useHistory();
@@ -39,19 +40,9 @@ const MainNavigation = () => {
         <Menu />
         {rejectedLogin && <ErrorAlert />}
         <Grid container justifyContent="flex-end">
-          {user ? (
+          {isUserLoggedIn ? (
             <>
-              <Button
-                variant="outlined"
-                size="small"
-                className={styles.buttonMargin}
-                onClick={() => history.push("/new-recipe")}
-              >
-                Add Recipe
-              </Button>
-              <Button variant="outlined" size="small" onClick={logoutHandler}>
-                Logout
-              </Button>
+              <UserMenu />
             </>
           ) : (
             <>

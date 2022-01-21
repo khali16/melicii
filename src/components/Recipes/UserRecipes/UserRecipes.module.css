@@ -1,0 +1,49 @@
+.typeContainer {
+  margin: auto;
+  margin-top: 10px;
+  width: 35%;
+  height: 80px;
+}
+
+.typeText {
+  text-align: center;
+  padding: 30px 0 30px;
+}
+
+.underline {
+  background-color: #f5d175;
+  margin-top: -30px;
+  height: 3px;
+}
+
+.container {
+  width: 90vw;
+  margin: auto;
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.card {
+  width: 20%;
+  height: 400px;
+}
+
+.link:focus,
+:hover,
+:visited,
+:link,
+:active {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.rating {
+  float: right;
+}
+
+.ratingIcon {
+  color: #117777;
+}
