@@ -1,8 +1,10 @@
 .container {
+  position: relative;
   margin: auto;
   margin-top: 10px;
   width: 35%;
   height: 80px;
+  z-index: -1;
 }
 
 .text {
