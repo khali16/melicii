@@ -13,7 +13,7 @@ const SignupModal: React.FC<Props> = ({ openModal, closeModal }) => {
     <div>
       <Modal open={openModal} onClose={closeModal}>
         <div className={styles.modal}>
-          <Signup />
+          <Signup closeModal={closeModal} />
         </div>
       </Modal>
     </div>

@@ -20,3 +20,19 @@ export interface Rating {
   title: string;
   rating: number;
 }
+
+export interface User {
+  email: string;
+  username: string;
+}
+
+export interface NewUser {
+  email: string;
+  username: string;
+  password: string;
+}
+
+export interface CheckUser {
+  email: string;
+  password: string;
+}

@@ -10,25 +10,15 @@ import { ThemeProvider } from "@material-ui/styles";
 import { useFormik } from "formik";
 import React from "react";
 import { theme, useStyles } from "../UI/Logo/Styles";
-import * as Yup from "yup";
 import { useForm } from "../../store/form-context";
+import { firstStepSchema } from "./ValidationSchemas/FirstStepValidation";
 
 interface Props {
   nextStep: () => void;
 }
-//TO-DO: refactor
 
 const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
-  const schema = Yup.object().shape({
-    title: Yup.string().required("Please, enter title.").min(5, "Min 5 char."),
-    prepTime: Yup.number()
-      .required("Please, select number.")
-      .min(5, "Min 5 min"),
-    difficulty: Yup.string().required("Please, select difficulty"),
-    type: Yup.string().required("Please, select type of meal"),
-  });
-
-  const { setFirstForm, firstForm } = useForm();
+  const { setFirstForm } = useForm();
 
   const formik = useFormik({
     initialValues: {
@@ -41,7 +31,7 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
       setFirstForm(values);
       nextStep();
     },
-    validationSchema: schema,
+    validationSchema: firstStepSchema,
   });
 
   const classes = useStyles();

@@ -42,7 +42,7 @@
 }
 
 .submitButton {
-  background-color: #020000;
+  background-color: #020000 !important;
   opacity: 0.6;
   height: 70px;
 }

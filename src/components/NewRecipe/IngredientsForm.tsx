@@ -9,33 +9,19 @@ import {
   Typography,
 } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-import * as Yup from "yup";
 import { useForm } from "../../store/form-context";
 import { IngredientsMeasurement } from "../../constants/IngredientsMeasurement";
 import { theme } from "../styles/Themes";
 import styles from "./IngredientsForm.module.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import { ingredientsSchema } from "./ValidationSchemas/IngredientValidation";
 
 interface Props {
   nextStep: () => void;
 }
 
-//TO-DO: refactor
 const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
-  const schema = Yup.object().shape({
-    ingredients: Yup.array()
-      .of(
-        Yup.object().shape({
-          amount: Yup.string().required("wybierz"),
-          measure: Yup.string().required("wybierz"),
-          ingredient: Yup.string().required("wybierz"),
-        })
-      )
-      .required("Must have ingredients")
-      .min(3, "At least 3 ingredients"),
-  });
-
   const { setSecondForm } = useForm();
 
   const formik = useFormik({
@@ -50,7 +36,7 @@ const IngredientsForm: React.FC<Props> = ({ nextStep }) => {
       setSecondForm(values);
       nextStep();
     },
-    validationSchema: schema,
+    validationSchema: ingredientsSchema,
   });
 
   const handleSubmit = () => {

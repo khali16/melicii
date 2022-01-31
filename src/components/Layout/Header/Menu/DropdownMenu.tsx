@@ -5,11 +5,12 @@ import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import styles from "./DropdownMenu.module.css";
 import { useStyles } from "../../../styles/Themes";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const DropdownMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const history = useHistory();
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -31,20 +32,17 @@ const DropdownMenu = () => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        onClick={handleClose}
         className={classes.menu}
       >
-        <Link to="/type/breakfast" className={styles.link}>
-          <MenuItem onClick={handleClose}>Breakfast</MenuItem>
-        </Link>
-        <Link to="/type/lunch" className={styles.link}>
-          <MenuItem onClick={handleClose}>Lunch</MenuItem>
-        </Link>
-        <Link to="/type/dinner" className={styles.link}>
-          <MenuItem onClick={handleClose}>Dinner</MenuItem>
-        </Link>
-        <Link to="/type/dessert" className={styles.link}>
-          <MenuItem onClick={handleClose}>Dessert</MenuItem>
-        </Link>
+        <MenuItem onClick={() => history.push("/type/breakfast")}>
+          Breakfast
+        </MenuItem>
+        <MenuItem onClick={() => history.push("/type/lunch")}>Lunch</MenuItem>
+        <MenuItem onClick={() => history.push("/type/dinner")}>Dinner</MenuItem>
+        <MenuItem onClick={() => history.push("/type/dessert")}>
+          Dessert
+        </MenuItem>
       </Menu>
     </>
   );

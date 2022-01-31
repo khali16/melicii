@@ -1,18 +1,13 @@
 import { useState } from "react";
 import { Button, Box, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
-import { useForm } from "../../store/form-context";
 import styles from "./ImageForm.module.css";
-import { useDispatch } from "react-redux";
-import { addRecipe } from "../../redux/recipes-slice";
-
-//TO-DO refactor
+import useNewRecipe from "../../hooks/useNewRecipe";
 
 const ImageForm = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const [pictureUrl, setPictureUrl] = useState();
-  const { firstForm, secondForm, thirdForm } = useForm();
+  const { addNewRecipe } = useNewRecipe(pictureUrl);
 
   const uploadHandler = (event) => {
     setPictureUrl(event.currentTarget.value);
@@ -22,17 +17,8 @@ const ImageForm = () => {
     setPictureUrl();
   };
 
-  const data = {
-    author: "Kamila",
-    rating: [0],
-    pictureUrl,
-    ...firstForm,
-    ...secondForm,
-    ...thirdForm,
-  };
-
   const submitHandler = () => {
-    dispatch(addRecipe(data));
+    addNewRecipe();
     history.push("/");
   };
 
@@ -51,22 +37,24 @@ const ImageForm = () => {
           <Box className={styles.box}>
             <img src={pictureUrl} alt="" />
           </Box>
-          <Button
-            variant="contained"
-            color="primary"
-            className={styles.cancelButton}
-            onClick={cancelImgHandler}
-          >
-            CANCEL
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            className={styles.confirmButton}
-            onClick={submitHandler}
-          >
-            POST
-          </Button>
+          <Box className={styles.buttonsContainer}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={styles.cancelButton}
+              onClick={cancelImgHandler}
+            >
+              CANCEL
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className={styles.confirmButton}
+              onClick={submitHandler}
+            >
+              POST
+            </Button>
+          </Box>
         </>
       )}
     </>

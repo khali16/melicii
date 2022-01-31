@@ -6,6 +6,7 @@ import ImageForm from "./components/NewRecipe/ImageForm";
 import SingleRecipe from "./components/Recipes/SingleRecipe/SingleRecipe";
 import Layout from "./components/Layout/Header/Layout";
 import TypeRecipes from "./components/Recipes/RecipesByType/TypeRecipes";
+import UserRecipes from "./components/Recipes/UserRecipes/UserRecipes";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
       </Route>
       <Route path="/type/:mealType">
         <TypeRecipes />
+      </Route>
+      <Route path="/userRecipes">
+        <UserRecipes />
       </Route>
     </Layout>
   );
