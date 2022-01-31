@@ -10,7 +10,6 @@ import styles from "./MainNavigation.module.css";
 import ErrorAlert from "./ErrorAlert/ErrorAlert";
 import UserMenu from "./UserMenu/UserMenu";
 
-//TO-DO: refactor
 const MainNavigation = () => {
   const { user, rejectedLogin, isUserLoggedIn } = useAuth();
   useEffect(() => {}, [user, rejectedLogin, isUserLoggedIn]);

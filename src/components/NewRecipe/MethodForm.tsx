@@ -2,32 +2,19 @@ import { Button, Card, CardContent, TextField } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import { FieldArray, Form, FormikProvider, useFormik } from "formik";
 import React from "react";
-import { theme, useStyles } from "../UI/Logo/Styles";
-import * as Yup from "yup";
+import { theme } from "../UI/Logo/Styles";
 import CardHeader from "@material-ui/core/CardHeader";
 import { useForm } from "../../store/form-context";
 import styles from "./MethodForm.module.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
+import { methodSchema } from "./ValidationSchemas/MethodValidation";
 
 interface Props {
   nextStep: () => void;
 }
-//TO-DO: refactor
+
 const MethodForm: React.FC<Props> = ({ nextStep }) => {
-  const classes = useStyles();
-
-  const schema = Yup.object().shape({
-    steps: Yup.array()
-      .of(
-        Yup.object().shape({
-          step: Yup.string().required("Wybierz"),
-        })
-      )
-      .required("Add step")
-      .min(2, "At least 2 steps"),
-  });
-
   const { setThirdForm } = useForm();
 
   const handleSubmit = () => {
@@ -42,13 +29,13 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
       setThirdForm(values);
       nextStep();
     },
-    validationSchema: schema,
+    validationSchema: methodSchema,
   });
 
   return (
     <>
       <Card className={styles.card}>
-        <CardHeader style={{ color: "red" }}>Add Recipe</CardHeader>
+        <CardHeader>Add Recipe</CardHeader>
         <CardContent>
           <ThemeProvider theme={theme}>
             <FormikProvider value={formik}>
@@ -102,7 +89,7 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
                     fullWidth
                     variant="contained"
                     color="primary"
-                    className={classes.submit}
+                    className={styles.submitButton}
                     onClick={handleSubmit}
                     type="button"
                   >
