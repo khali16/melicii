@@ -1,8 +1,29 @@
+ express-data-handling
 let recipes = [
+
+author: string;
+title: string;
+type: string;
+pictureUrl: string;
+prepTime: number;
+difficulty: string;
+ingredients: {
+  amount: string;
+  measure: string;
+  ingredient: string;
+}
+[];
+steps: {
+  step: string;
+}
+[];
+export const recipes = [
+ main
   {
     author: "Kamila",
     title: "Tomato Pasta",
     type: "dinner",
+express-data-handling
     pictureUrl:
       "https://www.simplyrecipes.com/thmb/dBaY84TstQAL88opekC8Oy_0xa0=/580x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2012__04__buttery-tomato-pasta-vertical-735-f594b53b2e9341599b1767369c89c7ff.jpg",
     prepTime: 30,
@@ -23,10 +44,21 @@ let recipes = [
         amount: "1",
         measure: "-",
         ingredient: "onion",
+
+    pictureUrl: "",
+    prepTime: 30,
+    difficulty: "easy",
+    ingredients: [
+      {
+        amount: "1",
+        measure: "",
+        ingredient: "tomatos",
+ main
       },
       {
         amount: "2",
         measure: "-",
+ express-data-handling
         ingredient: "garlic",
       },
       {
@@ -153,10 +185,19 @@ let recipes = [
         amount: "1/2",
         measure: "teaspoon",
         ingredient: "black pepper",
+
+        ingredient: "tomatos",
+      },
+      {
+        amount: "2",
+        measure: "-",
+        ingredient: "tomatos",
+ main
       },
     ],
     steps: [
       {
+ express-data-handling
         step: "Slice the tempeh into 1/4-inch strips crosswise or lengthwise, depending on how long you’d like your “bacon” strips. Place the sliced tempeh in a wide shallow dish.",
       },
       {
@@ -164,11 +205,21 @@ let recipes = [
       },
       {
         step: "Preheat the oven to 425ºF and line a baking sheet with parchment paper. Lay the marinated tempeh in a single layer. Bake for 15 minutes. Reserve the marinade. When there are 5 minutes left, brush the tempeh with the marinade. Once baked, brush it again and serve warm.",
+
+        step: "Do it.",
+      },
+      {
+        step: "Do it.",
+      },
+      {
+        step: "Do it.",
+ main
       },
     ],
   },
   {
     author: "Kamila",
+ express-data-handling
     title: "Oatmeal Cookies",
     type: "dessert",
     pictureUrl:
@@ -508,10 +559,33 @@ let recipes = [
         amount: "1/2",
         measure: "cup",
         ingredient: "cilantro leaves",
+
+    title: "Tomato Pasta 2",
+    type: "dinner",
+    pictureUrl: "",
+    prepTime: 30,
+    difficulty: "easy",
+    ingredients: [
+      {
+        amount: "2",
+        measure: "-",
+        ingredient: "tomatos",
+      },
+      {
+        amount: "2",
+        measure: "-",
+        ingredient: "tomatos",
+      },
+      {
+        amount: "2",
+        measure: "-",
+        ingredient: "tomatos",
+ main
       },
     ],
     steps: [
       {
+ express-data-handling
         step: "Combine the lettuce, red pepper, cucumber, tomatoes, and scallions in a large serving bowl. Set aside.",
       },
       {
@@ -531,9 +605,21 @@ let recipes = [
       },
       {
         step: "Add the corn and chicken into the bowl with the salad ingredients. Crumble the tortilla chips over the top. Add about two-thirds of the dressing and toss to lightly coat. Add more dressing and toss again, if needed. Divide salad into 4 bowls, top with crumbled Cotija cheese, and serve.",
+
+        step: "Do it.",
+      },
+      {
+        step: "Do it.",
+      },
+      {
+        step: "Do it.",
+ main
       },
     ],
   },
 ];
+ express-data-handling
 
 module.exports = recipes;
+
+main
