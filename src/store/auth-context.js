@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, fetchUser, addUser } from "../redux/auth-slice";
 

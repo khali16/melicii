@@ -9,6 +9,7 @@ import styles from "./Search.module.css";
 const Search = () => {
   const [searchedRecipe, setSearchedRecipe] = useState("");
   const [foundRecipes, setFoundRecipes] = useState<RecipesData[]>([]);
+  const [showResult, setShowResult] = useState(false);
   const { recipes } = useRecipes();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const Search = () => {
     } else {
       setFoundRecipes(filteredRecipes);
     }
-  }, [searchedRecipe]);
+  }, [searchedRecipe, recipes]);
   return (
     <>
       <div className={styles.searchContainer}>
@@ -30,9 +31,11 @@ const Search = () => {
             type="text"
             value={searchedRecipe}
             onChange={({ target: { value } }) => setSearchedRecipe(value)}
+            onFocus={() => setShowResult(true)}
+            onBlur={() => setShowResult(false)}
           />
         </div>
-        {foundRecipes.length != 0 && (
+        {foundRecipes.length !== 0 && showResult && (
           <Box className={styles.result}>
             <List>
               {foundRecipes.map((recipe) => {

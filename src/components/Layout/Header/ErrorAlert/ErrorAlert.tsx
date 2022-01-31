@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Alert from "@mui/material/Alert";
 import Collapse from "@mui/material/Collapse";
-import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import styles from "./ErrorAlert.module.css";
 import IconButton from "@mui/material/IconButton";

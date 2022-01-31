@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 import styles from "./DropdownMenu.module.css";
 import { useStyles } from "../../../styles/Themes";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const DropdownMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

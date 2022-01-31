@@ -4,17 +4,13 @@ import styles from "./SingleRecipe.module.css";
 import { useParams } from "react-router-dom";
 import { RecipesData } from "../../../interfaces/db_interfaces";
 import { RecipeParams } from "../../../interfaces/app_interfaces";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 import SingleRecipeHeadline from "./SingleRecipeHeadline";
 import Ingredients from "./Ingredients";
 import RecipeMethod from "./RecipeMethod";
 import useRecipes from "../../../hooks/useRecipes";
-import { useEffect, useState } from "react";
 
 const SingleRecipe = () => {
-  const [ladowanie, setLadowanie] = useState();
-  const { recipes, loading } = useRecipes();
+  const { recipes } = useRecipes();
   const { recipeTitle } = useParams<RecipeParams>();
 
   const filterRecipes = (recipes: RecipesData[], recipeTitle: string) => {

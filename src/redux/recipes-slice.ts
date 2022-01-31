@@ -32,6 +32,5 @@ export const recipesSlice = createSlice({
   },
 });
 
-export const {} = recipesSlice.actions;
 export default recipesSlice.reducer;
 export { fetchRecipes, addRecipe, addRating };

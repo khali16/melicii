@@ -1,6 +1,6 @@
 import { Button, Grid, Toolbar } from "@material-ui/core";
 import { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../../store/auth-context";
 import LogInModal from "../../LogIn/LogInModal";
 import SignupModal from "../../Signup/SignupModal";
@@ -12,11 +12,10 @@ import UserMenu from "./UserMenu/UserMenu";
 
 //TO-DO: refactor
 const MainNavigation = () => {
-  const { logoutHandler, user, rejectedLogin, isUserLoggedIn } = useAuth();
+  const { user, rejectedLogin, isUserLoggedIn } = useAuth();
   useEffect(() => {}, [user, rejectedLogin, isUserLoggedIn]);
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignupModal, setOpenSignupModal] = useState(false);
-  const history = useHistory();
 
   const openLoginModalHandler = () => {
     setOpenLoginModal(true);

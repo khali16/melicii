@@ -28,7 +28,7 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
     type: Yup.string().required("Please, select type of meal"),
   });
 
-  const { setFirstForm, firstForm } = useForm();
+  const { setFirstForm } = useForm();
 
   const formik = useFormik({
     initialValues: {

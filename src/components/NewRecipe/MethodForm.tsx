@@ -71,6 +71,7 @@ const MethodForm: React.FC<Props> = ({ nextStep }) => {
                               className={styles.stepInput}
                               multiline
                               minRows={2}
+                              fullWidth
                             />
                             {formik.values.steps.length > 2 && (
                               <DeleteIcon
