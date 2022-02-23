@@ -27,12 +27,11 @@
 }
 
 .container {
-  margin-left: 150px;
   margin-top: 30px;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   align-items: flex-start;
-  gap: 100px;
+  gap: 200px;
 }
 
 .recipeImg {
@@ -47,6 +46,9 @@
   font-size: xx-large;
   font-weight: bold;
   margin-left: 30px;
+  max-height: 800px;
+  height: auto;
+  position: relative;
 }
 
 .list {
@@ -56,7 +58,7 @@
 .ingredientsBox {
   background: linear-gradient(to bottom, #d2f9f9, #ffffff);
   width: 40%;
-  height: auto !important;
+  max-height: 800px;
 }
 
 .icon {
