@@ -27,6 +27,15 @@ app.post("/rating", (req, res) => {
   console.log(selectedRecipe.rating);
 });
 
+app.post("/comment", (req, res) => {
+  const selectedRecipe = recipes.find(({ title }) => title === req.body.title);
+  selectedRecipe.comments.push({
+    author: req.body.author,
+    comment: req.body.comment,
+  });
+  console.log(selectedRecipe.comments);
+});
+
 app.post("/addUser", (req, res) => {
   users.push(req.body);
   console.log(users);

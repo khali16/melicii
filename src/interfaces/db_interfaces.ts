@@ -14,6 +14,10 @@ export interface RecipesData {
   steps: {
     step: string;
   }[];
+  comments: {
+    author: string;
+    comment: string;
+  }[];
 }
 
 export interface Rating {
@@ -35,4 +39,10 @@ export interface NewUser {
 export interface CheckUser {
   email: string;
   password: string;
+}
+
+export interface AddComment {
+  title: string;
+  author: string;
+  comment: string;
 }

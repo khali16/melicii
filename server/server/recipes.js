@@ -66,6 +66,11 @@ let recipes = [
         step: "Drain the pasta and add it to the sauce. Toss gently to combine. Add the basil, toss once more, and serve immediately with grated cheese.",
       },
     ],
+    comments: [
+      { author: "Gacek", comment: "My favourite tomato pasta!!!" },
+      { author: "Kuba", comment: "Nice one!" },
+      { author: "Alice", comment: "Delicious!" },
+    ],
   },
   {
     author: "Kamila",
@@ -113,6 +118,7 @@ let recipes = [
         step: "Blend the blueberries, yogurt, milk, sugar, vanilla, and nutmeg in a blender until frothy, scraping down the sides of the blender with a spatula occasionally. Serve immediately.",
       },
     ],
+    comments: [{ author: "Gacek", comment: "Highly recommended." }],
   },
   {
     author: "Kamila",
@@ -166,6 +172,7 @@ let recipes = [
         step: "Preheat the oven to 425ºF and line a baking sheet with parchment paper. Lay the marinated tempeh in a single layer. Bake for 15 minutes. Reserve the marinade. When there are 5 minutes left, brush the tempeh with the marinade. Once baked, brush it again and serve warm.",
       },
     ],
+    comments: [{ author: "Gacek", comment: "Interesting recipe..." }],
   },
   {
     author: "Kamila",
@@ -245,6 +252,7 @@ let recipes = [
         step: "Cookies will keep for several days in an airtight container on the counter.",
       },
     ],
+    comments: [{ author: "Gacek", comment: "Delicious cookies!" }],
   },
   {
     author: "Kuba",
@@ -339,6 +347,9 @@ let recipes = [
         step: "Ladle into individual bowls and serve. Great served with crusty bread for dipping in the fish stew broth.",
       },
     ],
+    comments: [
+      { author: "Gacek", comment: "I don't like soups but this one is fine." },
+    ],
   },
   {
     author: "Kuba",
@@ -413,6 +424,7 @@ let recipes = [
         step: "Serve immediately. Serve alone (paleo and low carb), or with rice.",
       },
     ],
+    comments: [{ author: "Gacek", comment: "Nice one!" }],
   },
   {
     author: "Kamila",
@@ -533,6 +545,7 @@ let recipes = [
         step: "Add the corn and chicken into the bowl with the salad ingredients. Crumble the tortilla chips over the top. Add about two-thirds of the dressing and toss to lightly coat. Add more dressing and toss again, if needed. Divide salad into 4 bowls, top with crumbled Cotija cheese, and serve.",
       },
     ],
+    comments: [{ author: "Gacek", comment: "Fit and delicious." }],
   },
 ];
 
