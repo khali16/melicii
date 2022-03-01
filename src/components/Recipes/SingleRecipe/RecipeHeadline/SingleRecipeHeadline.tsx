@@ -1,9 +1,9 @@
 import { Typography } from "@material-ui/core";
 import Rating from "@mui/material/Rating";
 import { useDispatch } from "react-redux";
-import { addRating } from "../../../redux/recipes-slice";
+import { addRating } from "../../../../redux/recipes-slice";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import styles from "./SingleRecipe.module.css";
+import styles from "../SingleRecipe.module.css";
 import StarIcon from "@mui/icons-material/Star";
 
 interface OwnProps {
@@ -45,7 +45,8 @@ const SingleRecipeHeadline: React.FC<OwnProps> = ({
       </div>
       <div className={styles.info}>
         <Typography variant="h5">By {author}</Typography>
-        <AccessTimeIcon className={styles.prepTime} /> {prepTime} mins
+        <AccessTimeIcon className={styles.prepTime} />
+        <span>{prepTime} mins</span>
       </div>
     </>
   );

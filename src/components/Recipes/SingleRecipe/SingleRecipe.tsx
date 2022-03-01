@@ -4,7 +4,7 @@ import styles from "./SingleRecipe.module.css";
 import { useParams } from "react-router-dom";
 import { RecipesData } from "../../../interfaces/db_interfaces";
 import { RecipeParams } from "../../../interfaces/app_interfaces";
-import SingleRecipeHeadline from "./SingleRecipeHeadline";
+import SingleRecipeHeadline from "./RecipeHeadline/SingleRecipeHeadline";
 import Ingredients from "./Ingredients";
 import RecipeMethod from "./RecipeMethod";
 import Comments from "./Comments/Comments";
