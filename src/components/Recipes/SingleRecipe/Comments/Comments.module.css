@@ -1,0 +1,25 @@
+.commentsContainer {
+  margin-top: 50px;
+  width: 90vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  color: #117777 !important;
+}
+
+.divider {
+  width: 90%;
+  height: 3px;
+  background-color: #f5d175 !important;
+}
+
+.commentInput {
+  width: 80%;
+  height: 200px !important;
+}

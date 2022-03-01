@@ -1,4 +1,4 @@
-import { RecipesData, Rating } from "./../interfaces/db_interfaces";
+import { RecipesData, Rating, AddComment } from "./../interfaces/db_interfaces";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -21,6 +21,13 @@ const addRating = createAsyncThunk(
   }
 );
 
+const addComment = createAsyncThunk(
+  "comment",
+  async ({ title, author, comment }: AddComment) => {
+    await axios.post("/comment", { title, author, comment });
+  }
+);
+
 export const recipesSlice = createSlice({
   name: "recipes",
   initialState: { recipes: [] as RecipesData[] },
@@ -33,4 +40,4 @@ export const recipesSlice = createSlice({
 });
 
 export default recipesSlice.reducer;
-export { fetchRecipes, addRecipe, addRating };
+export { fetchRecipes, addRecipe, addRating, addComment };

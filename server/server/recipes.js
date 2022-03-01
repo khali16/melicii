@@ -98,6 +98,11 @@ express-data-handling
         step: "Drain the pasta and add it to the sauce. Toss gently to combine. Add the basil, toss once more, and serve immediately with grated cheese.",
       },
     ],
+    comments: [
+      { author: "Gacek", comment: "My favourite tomato pasta!!!" },
+      { author: "Kuba", comment: "Nice one!" },
+      { author: "Alice", comment: "Delicious!" },
+    ],
   },
   {
     author: "Kamila",
@@ -145,6 +150,7 @@ express-data-handling
         step: "Blend the blueberries, yogurt, milk, sugar, vanilla, and nutmeg in a blender until frothy, scraping down the sides of the blender with a spatula occasionally. Serve immediately.",
       },
     ],
+    comments: [{ author: "Gacek", comment: "Highly recommended." }],
   },
   {
     author: "Kamila",
@@ -216,6 +222,7 @@ express-data-handling
  main
       },
     ],
+    comments: [{ author: "Gacek", comment: "Interesting recipe..." }],
   },
   {
     author: "Kamila",
@@ -296,6 +303,7 @@ express-data-handling
         step: "Cookies will keep for several days in an airtight container on the counter.",
       },
     ],
+    comments: [{ author: "Gacek", comment: "Delicious cookies!" }],
   },
   {
     author: "Kuba",
@@ -390,6 +398,9 @@ express-data-handling
         step: "Ladle into individual bowls and serve. Great served with crusty bread for dipping in the fish stew broth.",
       },
     ],
+    comments: [
+      { author: "Gacek", comment: "I don't like soups but this one is fine." },
+    ],
   },
   {
     author: "Kuba",
@@ -464,6 +475,7 @@ express-data-handling
         step: "Serve immediately. Serve alone (paleo and low carb), or with rice.",
       },
     ],
+    comments: [{ author: "Gacek", comment: "Nice one!" }],
   },
   {
     author: "Kamila",
@@ -616,6 +628,7 @@ express-data-handling
  main
       },
     ],
+    comments: [{ author: "Gacek", comment: "Fit and delicious." }],
   },
 ];
  express-data-handling

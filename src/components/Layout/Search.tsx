@@ -32,7 +32,6 @@ const Search = () => {
             value={searchedRecipe}
             onChange={({ target: { value } }) => setSearchedRecipe(value)}
             onFocus={() => setShowResult(true)}
-            onBlur={() => setShowResult(false)}
           />
         </div>
         {foundRecipes.length !== 0 && showResult && (
