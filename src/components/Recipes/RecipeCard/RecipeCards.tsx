@@ -1,6 +1,6 @@
 import styles from "./RecipeCard.module.css";
 import { RecipesData } from "../../../interfaces/db_interfaces";
-import RecipeCard from "./RecipeCard";
+import RecipeCard from "./SingleCard/RecipeCard";
 import useRecipes from "../../../hooks/useRecipes";
 
 const RecipeCards = () => {

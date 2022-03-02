@@ -9,8 +9,8 @@ import {
 import { Rating } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import { theme } from "../../styles/Themes";
-import styles from "./Recipes.module.css";
+import { theme } from "../../../styles/Themes";
+import styles from "../Recipes.module.css";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import StarIcon from "@mui/icons-material/Star";
 

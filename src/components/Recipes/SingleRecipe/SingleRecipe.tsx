@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { RecipesData } from "../../../interfaces/db_interfaces";
 import { RecipeParams } from "../../../interfaces/app_interfaces";
 import SingleRecipeHeadline from "./RecipeHeadline/SingleRecipeHeadline";
-import Ingredients from "./Ingredients";
+import Ingredients from "./Ingredients/Ingredients";
 import RecipeMethod from "./RecipeMethod";
 import Comments from "./Comments/Comments";
 import { useEffect, useState } from "react";

@@ -1,6 +1,6 @@
 import useTypeRecipes from "../../../hooks/useTypeRecipes";
 import { sortByRating } from "../../../utils/sortByRating";
-import TypeRecipe from "./TypeRecipe";
+import TypeRecipe from "./TypeRecipe/TypeRecipe";
 import styles from "./Recipes.module.css";
 import { Typography } from "@material-ui/core";
 import { useParams } from "react-router";

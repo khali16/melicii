@@ -7,8 +7,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import styles from "./RecipeCard.module.css";
-import { theme } from "../../styles/Themes";
+import styles from "../RecipeCard.module.css";
+import { theme } from "../../../styles/Themes";
 import QueryBuilderIcon from "@mui/icons-material/QueryBuilder";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
