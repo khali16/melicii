@@ -5,7 +5,7 @@ import { useStyles, theme } from "../UI/Logo/Styles";
 import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
 import styles from "./LogInModal.module.css";
-import Logo from "../UI/Logo/Logo";
+import Logo from "../UI/Logo/Logo/Logo";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { loginSchema } from "./validationSchema";
 import { useFormik } from "formik";

@@ -1,6 +1,6 @@
 import { ThemeProvider, Typography } from "@material-ui/core";
 import styles from "./FavoritesLink.module.css";
-import { theme } from "../styles/Themes";
+import { theme } from "../../styles/Themes";
 
 const FavoritesLink = () => {
   return (

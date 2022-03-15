@@ -2,8 +2,8 @@ import { Box, List, ListItem, ListItemText } from "@material-ui/core";
 import { ListItemButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useRecipes from "../../hooks/useRecipes";
-import { RecipesData } from "../../interfaces/db_interfaces";
+import useRecipes from "../../../hooks/useRecipes";
+import { RecipesData } from "../../../interfaces/db_interfaces";
 import styles from "./Search.module.css";
 
 const Search = () => {

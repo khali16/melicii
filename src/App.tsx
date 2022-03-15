@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import NewRecipe from "./pages/NewRecipe";
 import Welcome from "./pages/Welcome";
-import ImageForm from "./components/NewRecipe/ImageForm";
+import ImageForm from "./components/NewRecipe/ImageForm/ImageForm";
 import SingleRecipe from "./components/Recipes/SingleRecipe/SingleRecipe";
 import Layout from "./components/Layout/Header/Layout";
 import TypeRecipes from "./components/Recipes/RecipesByType/TypeRecipes";

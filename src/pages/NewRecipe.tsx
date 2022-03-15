@@ -3,10 +3,10 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Stepper from "@material-ui/core/Stepper";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import React from "react";
-import FirstStepRecipeForm from "../components/NewRecipe/FirstStepRecipeForm";
-import ImageForm from "../components/NewRecipe/ImageForm";
-import IngredientsForm from "../components/NewRecipe/IngredientsForm";
-import MethodForm from "../components/NewRecipe/MethodForm";
+import FirstStepRecipeForm from "../components/NewRecipe/FirstStep/FirstStepRecipeForm";
+import ImageForm from "../components/NewRecipe/ImageForm/ImageForm";
+import IngredientsForm from "../components/NewRecipe/IngredientsForm/IngredientsForm";
+import MethodForm from "../components/NewRecipe/MethodForm/MethodForm";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

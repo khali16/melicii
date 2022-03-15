@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { theme } from "../UI/Logo/Styles";
 import Container from "@material-ui/core/Container";
 import styles from "./Signup.module.css";
-import Logo from "../UI/Logo/Logo";
+import Logo from "../UI/Logo/Logo/Logo";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { useFormik } from "formik";
 import { signupSchema } from "./validationSchema";
@@ -55,8 +55,8 @@ const Signup: React.FC<OwnProps> = ({ closeModal }) => {
               margin="normal"
               required
               fullWidth
-              name="password"
               label="PASSWORD"
+              name="password"
               type="password"
               id="password"
               onChange={formik.handleChange}
@@ -69,7 +69,7 @@ const Signup: React.FC<OwnProps> = ({ closeModal }) => {
               required
               fullWidth
               name="confirmPassword"
-              label="CONFIRM PASSWORD"
+              label="CONFIRM"
               type="password"
               id="confirmPassword"
               onChange={formik.handleChange}
