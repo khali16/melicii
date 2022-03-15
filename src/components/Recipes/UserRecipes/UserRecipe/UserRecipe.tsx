@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./UserRecipes.module.css";
-import { theme } from "../../styles/Themes";
+import styles from "../UserRecipes.module.css";
+import { theme } from "../../../styles/Themes";
 import {
   Card,
   CardActions,

@@ -2,13 +2,13 @@ import { Button, Card, CardContent, TextField } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import { FieldArray, Form, FormikProvider, useFormik } from "formik";
 import React from "react";
-import { theme } from "../UI/Logo/Styles";
+import { theme } from "../../UI/Logo/Styles";
 import CardHeader from "@material-ui/core/CardHeader";
-import { useForm } from "../../store/form-context";
+import { useForm } from "../../../store/form-context";
 import styles from "./MethodForm.module.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
-import { methodSchema } from "./ValidationSchemas/MethodValidation";
+import { methodSchema } from "../ValidationSchemas/MethodValidation";
 
 interface Props {
   nextStep: () => void;

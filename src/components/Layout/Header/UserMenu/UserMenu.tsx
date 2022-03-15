@@ -46,7 +46,10 @@ const UserMenu = () => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={() => history.push("/userRecipes")}>
+        <MenuItem
+          onClick={() => history.push("/userRecipes")}
+          data-testid="test"
+        >
           <DinnerDiningIcon className={styles.dinnerIcon} /> My recipes
         </MenuItem>
         <MenuItem onClick={() => history.push("/new-recipe")}>

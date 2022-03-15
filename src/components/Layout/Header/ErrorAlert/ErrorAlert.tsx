@@ -19,6 +19,7 @@ const ErrorAlert = () => {
               aria-label="close"
               color="inherit"
               size="small"
+              data-testid="button"
               onClick={() => {
                 setOpen(false);
               }}

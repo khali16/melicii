@@ -1,7 +1,7 @@
 import { Typography } from "@material-ui/core";
 import styles from "./UserRecipes.module.css";
 import { sortByRating } from "../../../utils/sortByRating";
-import UserRecipe from "./UserRecipe";
+import UserRecipe from "./UserRecipe/UserRecipe";
 import useUserRecipes from "../../../hooks/useUserRecipes";
 
 const UserRecipes = () => {

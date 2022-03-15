@@ -1,6 +1,6 @@
 import React from "react";
-import { ReactComponent as Ramen } from "./HeaderRamen.svg";
-import styles from "./HeaderLogo.module.css";
+import { ReactComponent as Ramen } from "../Icons/ramen.svg";
+import styles from "./Logo.module.css";
 
 const Logo = () => {
   return (

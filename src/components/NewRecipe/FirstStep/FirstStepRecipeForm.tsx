@@ -9,9 +9,9 @@ import {
 import { ThemeProvider } from "@material-ui/styles";
 import { useFormik } from "formik";
 import React from "react";
-import { theme, useStyles } from "../UI/Logo/Styles";
-import { useForm } from "../../store/form-context";
-import { firstStepSchema } from "./ValidationSchemas/FirstStepValidation";
+import { theme, useStyles } from "../../UI/Logo/Styles";
+import { useForm } from "../../../store/form-context";
+import { firstStepSchema } from "../ValidationSchemas/FirstStepValidation";
 
 interface Props {
   nextStep: () => void;
@@ -87,7 +87,9 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
                   helperText={formik.errors.type}
                 >
                   <MenuItem value="breakfast">Breakfast</MenuItem>
-                  <MenuItem value="lunch">Lunch</MenuItem>
+                  <MenuItem value="lunch" data-testid="lunch">
+                    Lunch
+                  </MenuItem>
                   <MenuItem value="dinner">Dinner</MenuItem>
                   <MenuItem value="dessert">Dessert</MenuItem>
                 </TextField>
@@ -103,7 +105,9 @@ const FirstStepRecipeForm: React.FC<Props> = ({ nextStep }) => {
                   helperText={formik.errors.difficulty}
                 >
                   <MenuItem value="easy">Easy</MenuItem>
-                  <MenuItem value="medium">Medium</MenuItem>
+                  <MenuItem value="medium" data-testid="medium">
+                    Medium
+                  </MenuItem>
                   <MenuItem value="difficult">Difficult</MenuItem>
                 </TextField>
               </ThemeProvider>

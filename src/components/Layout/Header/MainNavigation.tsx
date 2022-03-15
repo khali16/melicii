@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../../store/auth-context";
 import LogInModal from "../../LogIn/LogInModal";
 import SignupModal from "../../Signup/SignupModal";
-import HeaderLogo from "../../UI/Logo/HeaderLogo";
+import HeaderLogo from "../../UI/Logo/HeaderLogo/HeaderLogo";
 import Menu from "./Menu/DropdownMenu";
 import styles from "./MainNavigation.module.css";
 import ErrorAlert from "./ErrorAlert/ErrorAlert";

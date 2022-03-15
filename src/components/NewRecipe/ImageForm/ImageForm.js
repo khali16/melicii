@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Box, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
 import styles from "./ImageForm.module.css";
-import useNewRecipe from "../../hooks/useNewRecipe";
+import useNewRecipe from "../../../hooks/useNewRecipe";
 
 const ImageForm = () => {
   const history = useHistory();
@@ -30,6 +30,8 @@ const ImageForm = () => {
           variant="outlined"
           onChange={uploadHandler}
           className={styles.urlInput}
+          label="urlInput"
+          id="urlInput"
         />
       )}
       {pictureUrl && (
